@@ -1,9 +1,9 @@
 #include "ConsoleArgumentsValidator.h"
 
-#include <iostream>
-
-bool ConsoleArgumentsValidator::checkArguments(int argc, char* const argv[]) {
-	return this->checkIsHelpCalled(argc, argv) || this->checkAreFilesCalled(argc, argv);
+ConsoleArgumentType ConsoleArgumentsValidator::checkArguments(int argc, char* const argv[]) {
+	return this->checkIsHelpCalled(argc, argv) ? ConsoleArgumentType::Help :
+		this->checkAreFilesCalled(argc, argv) ? ConsoleArgumentType::Files :
+		ConsoleArgumentType::None;
 }
 
 bool ConsoleArgumentsValidator::checkIsHelpCalled(int argc, char* const argv[]) {

@@ -19,6 +19,15 @@
     <Filter Include="Source Files\Validators">
       <UniqueIdentifier>{1f001658-da0a-48c3-8ab4-3433111e2607}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{403a3b6c-11e2-4da7-8cdb-41586b11c6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{d35e0d77-b4bd-44ff-a3ae-90add69e6752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{0e166a39-e488-42ee-8273-e3ae6a2901d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PvPArena.cpp">
@@ -27,10 +36,22 @@
     <ClCompile Include="ConsoleArgumentsValidator.cpp">
       <Filter>Source Files\Validators</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleArgumentsValidator.h">
       <Filter>Header Files\Validators</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleArgumentType.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

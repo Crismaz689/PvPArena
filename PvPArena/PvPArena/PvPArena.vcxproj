@@ -129,10 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleArgumentsValidator.cpp" />
+    <ClCompile Include="ConsoleUI.cpp" />
     <ClCompile Include="PvPArena.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleArgumentsValidator.h" />
+    <ClInclude Include="ConsoleArgumentType.h" />
+    <ClInclude Include="ConsoleUI.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

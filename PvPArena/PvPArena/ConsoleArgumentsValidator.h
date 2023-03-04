@@ -3,12 +3,10 @@
 #include <filesystem>
 #include <string>
 
+#include "ConsoleArgumentType.h";
+#include "ConsoleUI.h"
+
 class ConsoleArgumentsValidator {
-public:
-	ConsoleArgumentsValidator() {}
-
-	bool checkArguments(int argc, char* const argv[]);
-
 private:
 	static inline const int FIRST_FILE_ARGUMENT_POSITION = 2;
 
@@ -37,4 +35,11 @@ private:
 	bool checkDoFilesExist(char* const fileNames[]);
 
 	bool checkDoesFileExist(char* const fileName);
+
+public:
+	ConsoleArgumentsValidator() {}
+
+	~ConsoleArgumentsValidator() {}
+
+	ConsoleArgumentType checkArguments(int argc, char* const argv[]);
 };
