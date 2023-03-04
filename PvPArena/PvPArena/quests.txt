@@ -1,0 +1,40 @@
+Fight;Kill the Orc!;Orc;100;5;8;5;56;24.3
+Fight;Challange the local ocultist!;Ocultist;80;10;21;10;70;31.5
+Fight;Beat the Dragon!;Black Dragon;300;25;35;20;100;95
+Fight;Kill the Grizzly Bear!;Grizzly Bear;150;10;18;0;63;24.2
+Fight;Kill the man who destroyed my house!;Unknown Guy;120;13;15;10;50;35.1
+Fight;Challange the Black Orc!;Black Orc;165;15;17;10;71;42.8
+Fight;Kill Se-Rang!;Se-Rang;200;10;20;5;55;32.9
+Fight;Challenge Scrofa! She is destroying the village!;Scrofa;220;16;17;0;64;50
+Fight;High Fanatic is crazy again, you have to beat him!;High Fanatic;80;3;9;2;40;15.5
+Fight;The Tigris has broken free from the cage, you have to kill him!;Tigris;100;10;25;0;55;32.7
+Fight;Defeat the mafia deputy boss - Bo!;Bo;200;12;18;10;50;30.2
+Fight;Defeat the mafia boss - Best Capitan!;Best Capitan;300;24;36;15;100;100
+Fight;Bestial Archer kills innocent animals. Teach him a lesson!;Bestial Archer;100;4;8;0;47;24.3
+Fight;Walking Ape torturing people, help them!;Walking Ape;100;9;11;0;45;27
+Fight;Dark Summoner executed mayor, he deserved to die!;Dark Summoner;120;15;19;0;60;38.7
+Fight;Bestial Arahan scares people. Teach him a lesson!;Bestial Arahan;150;3;11;8;52;26.6
+Fight;Demon Soldier is trying to kill our president, stop him!;Demon Soldier;120;15;18;0;67;40.5
+Fight;Demon Shaman summons cold weather. Convince him not to do that!;Demon Shaman;50;3;11;0;35;13.7
+Fight;Ice Killer Whale is destroying our plants, help us by killing him!;Ice Killer Whale;250;1;6;0;76;45.3
+Fight;Find and kill The Destroyer!;The Destroyer;150;30;40;15;100;100
+Help;Take care of Annie for 3 hours;3;35;10.2
+Help;Mow the lawn;2;27;6.1
+Help;Tidy my house;4;48;12.2
+Help;Take my dog for a walk;1;15;2.7
+Help;Deliver the letter to the village ranger;2;20;5.9
+Help;Do some shopping;1;16;3.1
+Help;Bring me water from the city;3;32;10
+Help;Fix the shed;4;40;11.5
+Help;Take my weapon from the forger;2;25;7
+Help;Say hello to my grandmother;1;11;3
+Help;Buy flowers for my girlfriend;2;18;4.1
+Help;Meditate with me;4;20;10
+Help;Bring me some food;1;14;5.2
+Help;Throw out rubbish;1;5;2.7
+Help;Wash my cows;5;59;28.9
+Help;Help me at the crafting table;4;38;19.7
+Help;Take care of Smith for 8 hours;8;70;35.3
+Help;Cut wood for the fireplace;2;25;10.3
+Help;Help princess wear high-heels;1;13;14.1
+Help;Plow the filed with cornfield seeds;6;58;40.9
