@@ -3,8 +3,8 @@
 #include <filesystem>
 #include <string>
 
-#include "ConsoleArgumentType.h";
-#include "ConsoleUI.h"
+#include "../Enums/ConsoleArgumentType.h";
+#include "../UI/ConsoleUI.h"
 
 class ConsoleArgumentsValidator {
 private:
@@ -24,15 +24,15 @@ private:
 
 	bool checkIsHelpCalled(int argc, char* const argv[]);
 
-	bool checkAreFilesCalled(int argc, char* const argv[]);
+	bool checkAreFilesCalled(int argc, char* const argv[], UI* ui);
 
-	bool checkFiles(int argc, char* const argv[]);
+	bool checkFiles(int argc, char* const argv[], UI* ui);
 
-	bool checkFilesExtensions(char* const fileNames[]);
+	bool checkFilesExtensions(char* const fileNames[], UI* ui);
 
 	bool checkFileExtension(char* const fileName);
 
-	bool checkDoFilesExist(char* const fileNames[]);
+	bool checkDoFilesExist(char* const fileNames[], UI* ui);
 
 	bool checkDoesFileExist(char* const fileName);
 
@@ -41,5 +41,5 @@ public:
 
 	~ConsoleArgumentsValidator() {}
 
-	ConsoleArgumentType checkArguments(int argc, char* const argv[]);
+	ConsoleArgumentType checkArguments(int argc, char* const argv[], UI* ui);
 };

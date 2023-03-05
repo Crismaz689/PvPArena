@@ -128,15 +128,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleArgumentsValidator.cpp" />
-    <ClCompile Include="ConsoleUI.cpp" />
     <ClCompile Include="PvPArena.cpp" />
+    <ClCompile Include="SourceFiles\Exceptions\FileInvalidExtensionException.cpp" />
+    <ClCompile Include="SourceFiles\Exceptions\FileNotFoundException.cpp" />
+    <ClCompile Include="SourceFiles\UI\ConsoleUI.cpp" />
+    <ClCompile Include="SourceFiles\Validators\ConsoleArgumentsValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleArgumentsValidator.h" />
-    <ClInclude Include="ConsoleArgumentType.h" />
-    <ClInclude Include="ConsoleUI.h" />
-    <ClInclude Include="UI.h" />
+    <ClInclude Include="HeaderFiles\Enums\ConsoleArgumentType.h" />
+    <ClInclude Include="HeaderFiles\Exceptions\FileInvalidExtensionException.h" />
+    <ClInclude Include="HeaderFiles\Exceptions\FileNotFoundException.h" />
+    <ClInclude Include="HeaderFiles\UI\ConsoleUI.h" />
+    <ClInclude Include="HeaderFiles\UI\UI.h" />
+    <ClInclude Include="HeaderFiles\Validators\ConsoleArgumentsValidator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

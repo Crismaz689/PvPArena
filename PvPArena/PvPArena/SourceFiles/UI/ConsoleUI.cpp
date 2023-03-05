@@ -1,4 +1,4 @@
-#include "ConsoleUI.h"
+#include "../../HeaderFiles/UI/ConsoleUI.h"
 
 void ConsoleUI::ShowHelpInstructions() {
 	std::cout << "\n\n================= HELP ====================\n\n";

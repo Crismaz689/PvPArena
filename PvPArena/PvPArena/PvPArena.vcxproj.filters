@@ -28,30 +28,48 @@
     <Filter Include="Header Files\Enums">
       <UniqueIdentifier>{0e166a39-e488-42ee-8273-e3ae6a2901d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exceptions">
+      <UniqueIdentifier>{14135df2-ce16-4bdd-8029-bf3453e5f11d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exceptions">
+      <UniqueIdentifier>{ce681530-adca-45d4-95af-9d99d5e85def}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PvPArena.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleArgumentsValidator.cpp">
-      <Filter>Source Files\Validators</Filter>
+    <ClCompile Include="SourceFiles\Exceptions\FileInvalidExtensionException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleUI.cpp">
+    <ClCompile Include="SourceFiles\Exceptions\FileNotFoundException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\UI\ConsoleUI.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Validators\ConsoleArgumentsValidator.cpp">
+      <Filter>Source Files\Validators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleArgumentsValidator.h">
+    <ClInclude Include="HeaderFiles\Validators\ConsoleArgumentsValidator.h">
       <Filter>Header Files\Validators</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleUI.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleArgumentType.h">
+    <ClInclude Include="HeaderFiles\Enums\ConsoleArgumentType.h">
       <Filter>Header Files\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
+    <ClInclude Include="HeaderFiles\UI\ConsoleUI.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\UI\UI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Exceptions\FileInvalidExtensionException.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Exceptions\FileNotFoundException.h">
+      <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
