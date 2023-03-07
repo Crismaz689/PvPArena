@@ -11,9 +11,9 @@ public:
 
 	~ConsoleUI() {}
 
-	void ShowHelpInstructions();
+	void showHelpInstructions() override;
 
-	void ShowDefaultErrorMessage();
+	void showDefaultErrorMessage() override;
 
-	void ShowErrorMessage(std::string message);
+	void showErrorMessage(std::string message) override;
 };

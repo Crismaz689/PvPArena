@@ -29,12 +29,12 @@ bool ConsoleArgumentsValidator::checkFilesExtensions(char* const fileNames[], UI
 		return this->checkFileExtension(fileNames[0]) && this->checkFileExtension(fileNames[1]);
 	}
 	catch (FileInvalidExtensionException& exception) {
-		ui->ShowErrorMessage(exception.what());
+		ui->showErrorMessage(exception.what());
 		
 		return false;
 	}
 	catch (std::out_of_range& exception) {
-		ui->ShowErrorMessage(exception.what());
+		ui->showErrorMessage(exception.what());
 
 		return false;
 	}
@@ -53,7 +53,7 @@ bool ConsoleArgumentsValidator::checkDoFilesExist(char* const fileNames[], UI* u
 		return this->checkDoesFileExist(fileNames[0]) && this->checkDoesFileExist(fileNames[1]);
 	}
 	catch (FileNotFoundException& exception) {
-		ui->ShowErrorMessage(exception.what());
+		ui->showErrorMessage(exception.what());
 
 		return false;
 	}

@@ -10,5 +10,8 @@ private:
 
 public:
     FileInvalidExtensionException(char* const fileName);
+
+    ~FileInvalidExtensionException() {}
+
     const char* what();
 };

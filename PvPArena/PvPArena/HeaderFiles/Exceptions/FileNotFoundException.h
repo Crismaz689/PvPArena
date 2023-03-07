@@ -10,5 +10,8 @@ private:
 
 public:
     FileNotFoundException(char* const fileName);
+
+    ~FileNotFoundException() {}
+
     const char* what();
 };

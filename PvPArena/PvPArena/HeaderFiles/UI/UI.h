@@ -1,10 +1,16 @@
 #pragma once
 
+#include <string>
+
 class UI {
 public:
 	UI() {}
+
 	virtual ~UI() {}
-	virtual void ShowHelpInstructions() = 0;
-	virtual void ShowDefaultErrorMessage() = 0;
-	virtual void ShowErrorMessage(std::string message) = 0;
+
+	virtual void showHelpInstructions() = 0;
+
+	virtual void showDefaultErrorMessage() = 0;
+
+	virtual void showErrorMessage(std::string message) = 0;
 };

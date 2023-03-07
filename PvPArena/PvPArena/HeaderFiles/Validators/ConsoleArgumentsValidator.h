@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <string>
 
-#include "../Enums/ConsoleArgumentType.h";
+#include "../Core/Enums/ConsoleArgumentType.h";
 #include "../UI/ConsoleUI.h"
 
 class ConsoleArgumentsValidator {

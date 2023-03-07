@@ -1,5 +1,6 @@
 #include "./HeaderFiles/Validators/ConsoleArgumentsValidator.h";
 #include "./HeaderFiles/UI/ConsoleUI.h";
+#include "./HeaderFiles/Core/GameHandler.h";
 
 int main(int argc, char* const argv[]) {
     ConsoleArgumentsValidator* consoleValidator = new ConsoleArgumentsValidator();
@@ -7,10 +8,15 @@ int main(int argc, char* const argv[]) {
     ConsoleArgumentType validationStatus = consoleValidator->checkArguments(argc, argv, consoleUI);
 
     if (validationStatus  == ConsoleArgumentType::Files) {
-        std::cout << "tak"; // start
+        GameHandler* gameHandler = new GameHandler();
+
+        gameHandler->initialize(argc, argv, consoleUI);
+        gameHandler->startGame(consoleUI);
+
+        delete gameHandler;
     }
     else if (validationStatus == ConsoleArgumentType::Help){
-        consoleUI->ShowHelpInstructions();
+        consoleUI->showHelpInstructions();
     }
 
     delete consoleValidator;

@@ -1,0 +1,1 @@
+#include "../../../HeaderFiles/Core/Quests/Quest.h";

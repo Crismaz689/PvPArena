@@ -25,14 +25,32 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{d35e0d77-b4bd-44ff-a3ae-90add69e6752}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Enums">
-      <UniqueIdentifier>{0e166a39-e488-42ee-8273-e3ae6a2901d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Exceptions">
       <UniqueIdentifier>{14135df2-ce16-4bdd-8029-bf3453e5f11d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Exceptions">
       <UniqueIdentifier>{ce681530-adca-45d4-95af-9d99d5e85def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{87f7879a-7618-4470-814d-471c0eed21bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{bdb60b81-ba0e-4a56-8b09-d48e271bea04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Quests">
+      <UniqueIdentifier>{cb8befe8-3f07-4098-b0d2-5f88c56e6c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Quests">
+      <UniqueIdentifier>{453d72fd-a811-4118-a79b-057d02043fee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{73d21d0d-9bb5-4b54-8fe8-13eb79604519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{07572f90-75eb-4467-ac80-ecea586d005d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Enums">
+      <UniqueIdentifier>{81d2222e-5130-4926-8136-0ffd07687e7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +69,34 @@
     <ClCompile Include="SourceFiles\Validators\ConsoleArgumentsValidator.cpp">
       <Filter>Source Files\Validators</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Core\GameHandler.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Quests\Quest.cpp">
+      <Filter>Source Files\Core\Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Quests\QuestHelp.cpp">
+      <Filter>Source Files\Core\Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Quests\QuestBattle.cpp">
+      <Filter>Source Files\Core\Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Helpers\FileHandler.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Item.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Exceptions\FileCouldNotBeOpenedException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\EnumUtil.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\Validators\ConsoleArgumentsValidator.h">
       <Filter>Header Files\Validators</Filter>
-    </ClInclude>
-    <ClInclude Include="HeaderFiles\Enums\ConsoleArgumentType.h">
-      <Filter>Header Files\Enums</Filter>
     </ClInclude>
     <ClInclude Include="HeaderFiles\UI\ConsoleUI.h">
       <Filter>Header Files\UI</Filter>
@@ -70,6 +109,45 @@
     </ClInclude>
     <ClInclude Include="HeaderFiles\Exceptions\FileNotFoundException.h">
       <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\GameHandler.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Quests\Quest.h">
+      <Filter>Header Files\Core\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Quests\QuestBattle.h">
+      <Filter>Header Files\Core\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Quests\QuestHelp.h">
+      <Filter>Header Files\Core\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Helpers\FileHandler.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Item.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\ItemType.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\ClassName.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\MissionType.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\ConsoleArgumentType.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\ItemFilePosition.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Exceptions\FileCouldNotBeOpenedException.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\EnumUtil.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
