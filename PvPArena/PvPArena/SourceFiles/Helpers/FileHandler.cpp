@@ -29,8 +29,6 @@ std::vector<Item> FileHandler::readItemsFromFile(std::string fileName, UI* ui) {
 			// variables for handling file line
 			std::string line = "";
 			std::string word = "";
-			int letters = 0;
-			int wordNumber = 0;
 
 			// variables for Item class
 			int hp = 0;
@@ -102,4 +100,118 @@ std::vector<Item> FileHandler::readItemsFromFile(std::string fileName, UI* ui) {
 	}
 
 	return items;
+}
+
+std::vector<Quest*> FileHandler::readQuestsFromFile(std::string fileName, UI* ui) {
+
+	// result object
+	std::vector<Quest*> quests;
+
+	try {
+		// variable for file handling
+		std::fstream file;
+
+		this->openFile(file, std::ios::in, fileName);
+		if (this->isFileOpened(file, fileName)) {
+
+			// variables for handling file line
+			std::string line = "";
+			std::string word = "";
+
+			// Quest members
+			QuestType questType = QuestType::Battle;
+			std::string questDescription = "";
+			int staminaCost = 0;
+			double reward = 0;
+
+			// QuestHelp members
+			int idleTimeInSeconds = 0;
+
+			// QuestBattle members
+			std::string enemyName = "";
+			int hp = 0;
+			int minDmg = 0;
+			int maxDmg = 0;
+			int chanceForBlock = 0;
+
+			while (std::getline(file, line)) {
+				questType = QuestType::Battle;
+				int letterPosition = 0;
+				int wordNumber = 0;
+				std::string word = "";
+
+				while ((letterPosition = line.find(DELIMITER)) != std::string::npos) {
+					word = line.substr(0, letterPosition);
+					line.erase(0, letterPosition + 1); // + 1 due to delimiter length
+
+					if (wordNumber == 0) {
+						if (EnumUtil::convertStringToQuestType(word) == QuestType::Help) {
+							questType = QuestType::Help;
+						}
+
+						wordNumber++;
+						continue;
+					}
+
+					if (questType == QuestType::Help) {
+						switch ((QuestHelpFilePosition)wordNumber) {
+							case QuestHelpFilePosition::Description:
+								questDescription = word;
+								break;
+							case QuestHelpFilePosition::IdleTimeInSeconds:
+								idleTimeInSeconds = stoi(word);
+								break;
+							case QuestHelpFilePosition::StaminaCost:
+								staminaCost = stoi(word);
+								break;
+						}
+					}
+					else {
+						switch ((QuestBattleFilePosition)wordNumber) {
+							case QuestBattleFilePosition::Description:
+								questDescription = word;
+								break;
+							case QuestBattleFilePosition::EnemyName:
+								enemyName = word;
+								break;
+							case QuestBattleFilePosition::EnemyHp:
+								hp = stoi(word);
+								break;
+							case QuestBattleFilePosition::EnemyMinDmg:
+								minDmg = stoi(word);
+								break;
+							case QuestBattleFilePosition::EnemyMaxDmg:
+								maxDmg = stoi(word);
+								break;
+							case QuestBattleFilePosition::EnemyChanceForBlock:
+								chanceForBlock = stoi(word);
+								break;
+							case QuestBattleFilePosition::StaminaCost:
+								staminaCost = stoi(word);
+								break;
+						}
+					}
+
+					wordNumber++;
+				}
+
+				reward = stod(line); // last position in line
+
+				if (questType == QuestType::Help) {
+					quests.push_back(new QuestHelp(questType, questDescription, staminaCost, reward, idleTimeInSeconds));
+				}
+				else {
+					quests.push_back(new QuestBattle(questType, questDescription, staminaCost, reward, enemyName,
+						hp, minDmg, maxDmg, chanceForBlock));
+				}
+				
+			}
+			this->closeFile(file);
+		}
+	}
+	catch (FileCouldNotBeOpenedException exception) {
+		ui->showErrorMessage(exception.what());
+	}
+
+	return quests;
 }

@@ -52,6 +52,12 @@
     <Filter Include="Header Files\Core\Enums">
       <UniqueIdentifier>{81d2222e-5130-4926-8136-0ffd07687e7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Player">
+      <UniqueIdentifier>{a4d7081b-ab7a-451e-a775-10f536a47ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Player">
+      <UniqueIdentifier>{78486065-6837-4d2f-a585-09a0239a2e3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PvPArena.cpp">
@@ -92,6 +98,24 @@
     </ClCompile>
     <ClCompile Include="SourceFiles\Core\EnumUtil.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Warrior.cpp">
+      <Filter>Source Files\Core\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Archer.cpp">
+      <Filter>Source Files\Core\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Mage.cpp">
+      <Filter>Source Files\Core\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Paladin.cpp">
+      <Filter>Source Files\Core\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Berserker.cpp">
+      <Filter>Source Files\Core\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Player\Sniper.cpp">
+      <Filter>Source Files\Core\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +158,7 @@
     <ClInclude Include="HeaderFiles\Core\Enums\ClassName.h">
       <Filter>Header Files\Core\Enums</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderFiles\Core\Enums\MissionType.h">
+    <ClInclude Include="HeaderFiles\Core\Enums\QuestType.h">
       <Filter>Header Files\Core\Enums</Filter>
     </ClInclude>
     <ClInclude Include="HeaderFiles\Core\Enums\ConsoleArgumentType.h">
@@ -148,6 +172,33 @@
     </ClInclude>
     <ClInclude Include="HeaderFiles\Core\EnumUtil.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\QuestBattleFilePosition.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Enums\QuestHelpFilePosition.h">
+      <Filter>Header Files\Core\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Player.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Warrior.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Mage.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Sniper.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Paladin.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Berserker.h">
+      <Filter>Header Files\Core\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Player\Archer.h">
+      <Filter>Header Files\Core\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

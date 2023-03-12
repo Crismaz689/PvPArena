@@ -15,6 +15,23 @@ ClassName EnumUtil::convertStringToClassName(std::string word) {
 		return ClassName::Berserker;
 }
 
+std::string EnumUtil::convertIntToStringClassName(int value) {
+	switch (value) {
+		case 0:
+			return "Warrior";
+		case 1:
+			return "Mage";
+		case 2:
+			return "Paladin";
+		case 3:
+			return "Archer";
+		case 4:
+			return "Sniper";
+		default:
+			return "Berserker";
+	}
+}
+
 ItemType EnumUtil::convertStringToItemType(std::string word) {
 	if (word == "Helmet")
 		return ItemType::Helmet;
@@ -26,4 +43,10 @@ ItemType EnumUtil::convertStringToItemType(std::string word) {
 		return ItemType::Pants;
 	else
 		return ItemType::Boots;
+}
+
+QuestType EnumUtil::convertStringToQuestType(std::string word) {
+	return word == "Battle" ?
+		QuestType::Battle :
+		QuestType::Help;
 }

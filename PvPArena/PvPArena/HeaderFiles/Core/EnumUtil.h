@@ -4,6 +4,7 @@
 
 #include "./Enums/ClassName.h";
 #include "./Enums/ItemType.h";
+#include "./Enums/QuestType.h";
 
 class EnumUtil {
 private:
@@ -14,5 +15,9 @@ private:
 public:
 	static ClassName convertStringToClassName(std::string word);
 
+	static std::string convertIntToStringClassName(int value);
+
 	static ItemType convertStringToItemType(std::string word);
+
+	static QuestType convertStringToQuestType(std::string word);
 };

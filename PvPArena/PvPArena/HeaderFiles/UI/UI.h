@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "../Core/Enums/ClassName.h";
+
 class UI {
 public:
 	UI() {}
@@ -13,4 +15,16 @@ public:
 	virtual void showDefaultErrorMessage() = 0;
 
 	virtual void showErrorMessage(std::string message) = 0;
+
+	virtual void showExceptionMessage(std::string message) = 0;
+
+	virtual void showCreatePlayerIntroduction(int playerNumber) = 0;
+
+	virtual void showCreatePlayerClassSelection(int playerNumber) = 0;
+
+	virtual void showClassList() = 0;
+
+	virtual std::string getPlayerName() = 0;
+
+	virtual ClassName getClassName() = 0;
 };
