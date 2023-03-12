@@ -12,32 +12,47 @@
 #include "./Player/Berserker.h";
 #include "./Player/Paladin.h";
 #include "./Item.h";
+#include "./TurnHandler.h";
 #include "./Quests/Quest.h";
 
 class GameHandler {
 private:
+	const unsigned int QUESTS_PER_TURN = 5;
+
 	std::vector<Quest*> availableQuests;
+
+	std::vector<Quest*> doneQuests;
 	
 	std::vector<Item> availableItems;
+
+	UI* ui = nullptr;
 
 	Player* playerA = nullptr;
 
 	Player* playerB = nullptr;
 
-	void initializeItems(int argc, char* const argv[], UI* ui);
+	TurnHandler* turnHandler = nullptr;
 
-	void initializeQuests(int argc, char* const argv[], UI* ui);
+	void initializeItems(int argc, char* const argv[]);
 
-	void createPlayers(UI* ui);
+	void initializeQuests(int argc, char* const argv[]);
 
-	Player* createPlayer(UI* ui, int playerNumber);
+	void createPlayers();
+
+	Player* createPlayer(int playerNumber);
+
+	std::vector<Quest*> randomizeQuests();
+
+	void clearCurrentQuests(std::vector<Quest*>& quests);
+
+	void handleTurn(Player* player, std::vector<Quest*> currentQuests);
 
 public:
 	GameHandler() {}
 
 	~GameHandler();
 
-	void startGame(UI* ui);
+	void startGame();
 
 	void initialize(int argc, char* const argv[], UI* ui);
 };

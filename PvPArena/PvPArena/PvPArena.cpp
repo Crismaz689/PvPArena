@@ -3,6 +3,8 @@
 #include "./HeaderFiles/Core/GameHandler.h";
 
 int main(int argc, char* const argv[]) {
+    srand(time(nullptr));
+
     ConsoleArgumentsValidator* consoleValidator = new ConsoleArgumentsValidator();
     UI* consoleUI = new ConsoleUI();
     ConsoleArgumentType validationStatus = consoleValidator->checkArguments(argc, argv, consoleUI);
@@ -11,9 +13,11 @@ int main(int argc, char* const argv[]) {
         GameHandler* gameHandler = new GameHandler();
 
         gameHandler->initialize(argc, argv, consoleUI);
-        gameHandler->startGame(consoleUI);
+        gameHandler->startGame();
 
         delete gameHandler;
+
+        gameHandler = nullptr;
     }
     else if (validationStatus == ConsoleArgumentType::Help){
         consoleUI->showHelpInstructions();
@@ -21,6 +25,9 @@ int main(int argc, char* const argv[]) {
 
     delete consoleValidator;
     delete consoleUI;
+
+    consoleValidator = nullptr;
+    consoleUI = nullptr;
 
     return 0;
 }

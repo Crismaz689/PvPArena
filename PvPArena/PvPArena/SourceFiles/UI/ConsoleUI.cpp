@@ -17,11 +17,19 @@ void ConsoleUI::showDefaultErrorMessage() {
 	std::cout << "\n\n================= CRITICAL ERROR ====================\n\n";
 }
 
-void ConsoleUI::showErrorMessage(std::string message) {
+void ConsoleUI::showCriticalErrorMessage(std::string message) {
 	std::cout << "\n\n================= CRITICAL ERROR ====================\n\n";
 	std::cout << "Error with following message occured: " << message << "\n";
 	std::cout << "Program has stopped.";
 	std::cout << "\n\n================= CRITICAL ERROR ====================\n\n";
+}
+
+void ConsoleUI::showErrorMessage(std::string message) {
+	std::cout << "[ERROR]: " << message << "\n";
+}
+
+void ConsoleUI::showInfoMessage(std::string message) {
+	std::cout << "[INFO]: " << message << "\n";
 }
 
 void ConsoleUI::showExceptionMessage(std::string message) {
@@ -31,8 +39,12 @@ void ConsoleUI::showExceptionMessage(std::string message) {
 }
 
 void ConsoleUI::showCreatePlayerIntroduction(int playerNumber) {
+	this->wipe();
+	std::cout << "\n=== [Player " << playerNumber << " is choosing the name] === \n";
+}
+
+void ConsoleUI::wipe() {
 	std::system("CLS");
-	std::cout << "\n=== [Player " << playerNumber << " is choosing the name] == = \n";
 }
 
 void ConsoleUI::showCreatePlayerClassSelection(int playerNumber) {
@@ -46,6 +58,59 @@ void ConsoleUI::showClassList() {
 	std::cout << "4. Archer\n";
 	std::cout << "5. Sniper\n";
 	std::cout << "6. Berserker\n";
+}
+
+void ConsoleUI::waitForContinue() {
+	std::system("PAUSE");
+}
+
+void ConsoleUI::showTurnInfo(Player* player, int currentTurn, int currentDay) {
+	std::cout << "===== [DAY: " << currentDay << "] =====\n";
+	std::cout << "===== [TURN: " << currentTurn << "] =====\n";
+	std::string message = player->getName() + ", it's your turn!\n\n";
+	this->showInfoMessage(message);
+
+	std::cout << "[STAMINA: " << player->getStamina() << "]\t\t\t" << "[GOLD: " << player->getGold() << "]\n";
+}
+
+void ConsoleUI::showTurnMenu(bool isChallenged) {
+	if (isChallenged)
+		std::cout << "1. " << "Fight (accept)\n";
+	else
+		std::cout << "1. " << "Fight\n";
+	std::cout << "2. " << "Quests\n";
+	std::cout << "3. " << "Shop\n";
+	std::cout << "4. " << "Check status\n";
+	std::cout << "5. " << "Show equipment\n";
+	std::cout << "6. " << "Finish the day\n";
+}
+
+int ConsoleUI::getTurnMenuOption() {
+	std::string option = "";
+	int optionAsInt = 0;
+	bool isOptionValid = false;
+
+	while (!isOptionValid) {
+		std::cout << "[I choose]: ";
+		std::cin >> option;
+
+		try {
+			optionAsInt = stoi(option);
+
+			if (optionAsInt > 0 && optionAsInt < 7) {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: You have to choose number between 1 and 6!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	return optionAsInt;
 }
 
 std::string ConsoleUI::getPlayerName() {

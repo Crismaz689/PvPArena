@@ -40,4 +40,12 @@ public:
 	virtual int calculateDamage() = 0;
 
 	virtual ~Player() {}
+
+	void resetHp();
+
+	std::string getName();
+
+	double getGold();
+
+	int getStamina();
 };
