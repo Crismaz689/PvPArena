@@ -107,6 +107,47 @@ std::vector<Quest*> GameHandler::randomizeQuests() {
 	return result;
 }
 
+void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQuests) {
+	int chosenOption = 0;
+
+	do {
+		this->ui->showQuestsMenu();
+		chosenOption = this->ui->getQuestMenuOption();
+		this->ui->wipe();
+
+		switch (chosenOption) {
+		case 1:
+			this->chooseQuestMenu(player, currentQuests);
+			break;
+		}
+	} while (chosenOption != 2);
+}
+
+void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests) {
+	int chosenQuestIndex = 0;
+
+	do {
+		this->ui->showCurrentQuests(currentQuests);
+		chosenQuestIndex = this->ui->getCurrentQuestOption(currentQuests);
+
+		if (chosenQuestIndex != 0) {
+			if (!this->takeQuest(player, currentQuests[chosenQuestIndex])) {
+				return;
+			}
+		}
+	} while (chosenQuestIndex != 0);
+}
+
+bool GameHandler::takeQuest(Player* player, Quest* quest) {
+	bool questCompleted = quest->start();
+
+	if (!questCompleted) {
+		this->ui->showLostScreen(player);
+	}
+
+	return questCompleted;
+}
+
 void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) {
 	int currentTurn = this->turnHandler->getTurn() + 1;
 	int currentDay = ((currentTurn - 1) / 2) + 1;
@@ -122,6 +163,8 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 			case 1:
 				break;
 			case 2:
+				bool questResult = false;
+				this->handleQuestMenu(player, currentQuests);
 				break;
 			case 3:
 				break;
@@ -165,6 +208,5 @@ void GameHandler::startGame() {
 
 		this->handleTurn(currentPlayer, currentQuests);
 		currentTurn = this->turnHandler->getTurn();
-		//this->clearCurrentQuests(currentQuests);
 	}
 }

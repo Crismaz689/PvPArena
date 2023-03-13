@@ -4,6 +4,7 @@
 
 #include "../Core/Enums/ClassName.h";
 #include "../Core/Player/Player.h";
+#include "../Core/Quests/Quest.h";
 
 class UI {
 public:
@@ -37,7 +38,17 @@ public:
 
 	virtual void wipe() = 0;
 
+	virtual void showQuestsMenu() = 0;
+
+	virtual int getQuestMenuOption() = 0;
+
 	virtual int getTurnMenuOption() = 0;
+
+	virtual void showCurrentQuests(std::vector<Quest*> currentQuests) = 0;
+
+	virtual int getCurrentQuestOption(std::vector<Quest*> currentQuests) = 0;
+
+	virtual void showLostScreen(Player* player) = 0;
 
 	virtual std::string getPlayerName() = 0;
 

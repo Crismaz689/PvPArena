@@ -13,5 +13,7 @@ public:
 
 	int getIdleTime();
 
+	bool start() override;
+
 	~QuestHelp() {}
 };

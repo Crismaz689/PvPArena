@@ -47,6 +47,12 @@ private:
 
 	void handleTurn(Player* player, std::vector<Quest*> currentQuests);
 
+	void handleQuestMenu(Player* player, std::vector<Quest*> currentQuests);
+
+	void chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests);
+
+	bool takeQuest(Player* player, Quest* quest);
+
 public:
 	GameHandler() {}
 

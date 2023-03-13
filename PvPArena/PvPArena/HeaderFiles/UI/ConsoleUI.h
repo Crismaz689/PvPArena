@@ -5,6 +5,8 @@
 
 #include "UI.h"
 #include "../Core/EnumUtil.h";
+#include "../Core/Quests/QuestBattle.h";
+#include "../Core/Quests/QuestHelp.h";
 
 class ConsoleUI : public UI{
 public:
@@ -38,7 +40,17 @@ public:
 
 	void wipe() override;
 
+	void showQuestsMenu() override;
+
+	int getQuestMenuOption() override;
+
 	int getTurnMenuOption() override;
+
+	void showCurrentQuests(std::vector<Quest*> currentQuests) override;
+
+	int getCurrentQuestOption(std::vector<Quest*> currentQuests) override;
+
+	void showLostScreen(Player* player) override;
 
 	std::string getPlayerName() override;
 

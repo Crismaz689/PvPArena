@@ -26,5 +26,7 @@ public:
 
 	std::string getDescription();
 
+	virtual bool start() = 0;
+
 	virtual ~Quest() {}
 };

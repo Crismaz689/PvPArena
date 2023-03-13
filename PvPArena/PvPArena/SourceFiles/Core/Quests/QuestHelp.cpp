@@ -3,3 +3,8 @@
 int QuestHelp::getIdleTime() {
 	return this->idleTimeInSeconds;
 }
+
+bool QuestHelp::start() {
+
+	return true;
+}

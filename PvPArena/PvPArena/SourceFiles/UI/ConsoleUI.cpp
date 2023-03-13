@@ -158,3 +158,89 @@ ClassName ConsoleUI::getClassName() {
 
 	return (ClassName)classNameValue;
 }
+
+void ConsoleUI::showQuestsMenu() {
+	std::cout << "===== QUEST OPTIONS =====\n";
+	std::cout << "1. Show quest list\n";
+	std::cout << "2. Back to main menu\n\n";
+}
+
+int ConsoleUI::getQuestMenuOption() {
+	std::string option = "";
+	int optionAsInt = 0;
+	bool isOptionValid = false;
+
+	while (!isOptionValid) {
+		std::cout << "[QUEST MENU]: What do you want to do now?: ";
+		std::cin >> option;
+
+		try {
+			optionAsInt = stoi(option);
+
+			if (optionAsInt > 0 && optionAsInt < 3) {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: You have to choose number between 1 and 2!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	return optionAsInt;
+}
+
+void ConsoleUI::showCurrentQuests(std::vector<Quest*> currentQuests) {
+	std::cout << "===== AVAILABLE QUESTS =====\n";
+	
+	if (currentQuests.size() == 0) {
+		std::cout << "No available quests.." << "\n\n";
+	}
+
+	std::cout << "0. Back to quest menu\n\n";
+	for (int i = 0; i < currentQuests.size(); ++i) {
+		if (currentQuests[i]->getType() == QuestType::Battle) {
+			std::cout << (i + 1) << ". [BATTLE] " << currentQuests[i]->getDescription() << "\n";
+			std::cout << "> You need " << currentQuests[i]->getStaminaCost() << " stamina points to take the quest. You will be rewarded with " << currentQuests[i]->getReward() << " gold.\n\n";
+		}
+		else {
+			std::cout << (i + 1) << ". [HELP] " << currentQuests[i]->getDescription() << "\n";
+			std::cout << "> You need " << currentQuests[i]->getStaminaCost() << " stamina points to take the quest. You will be rewarded with " << currentQuests[i]->getReward() << " gold.\n\n";
+		}
+	}
+}
+
+int ConsoleUI::getCurrentQuestOption(std::vector<Quest*> currentQuests) {
+	std::string chosenQuestIndex = "";
+	int chosenQuestIndexAsInt = 0;
+	bool isOptionValid = false;
+
+	while (!isOptionValid) {
+		std::cout << "[QUEST MENU]: Which quest do you want to take?: ";
+		std::cin >> chosenQuestIndex;
+
+		try {
+			chosenQuestIndexAsInt = stoi(chosenQuestIndex);
+
+			if (chosenQuestIndexAsInt >= 0 && chosenQuestIndexAsInt < currentQuests.size() + 1) {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: You have to choose number between 1 and " << currentQuests.size() << "!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	return chosenQuestIndexAsInt - 1;
+}
+
+void ConsoleUI::showLostScreen(Player* player) {
+	this->showInfoMessage("Player " + player->getName() + " has lost the game!");
+}
