@@ -107,7 +107,7 @@ std::vector<Quest*> GameHandler::randomizeQuests() {
 	return result;
 }
 
-void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQuests) {
+void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead) {
 	int chosenOption = 0;
 
 	do {
@@ -117,13 +117,16 @@ void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQue
 
 		switch (chosenOption) {
 		case 1:
-			this->chooseQuestMenu(player, currentQuests);
+			this->chooseQuestMenu(player, currentQuests, isPlayerDead);
+
+			if (isPlayerDead) return;
+
 			break;
 		}
 	} while (chosenOption != 2);
 }
 
-void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests) {
+void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead) {
 	int chosenQuestIndex = 0;
 
 	do {
@@ -131,21 +134,21 @@ void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*> currentQue
 		chosenQuestIndex = this->ui->getCurrentQuestOption(currentQuests);
 
 		if (chosenQuestIndex != 0) {
-			if (!this->takeQuest(player, currentQuests[chosenQuestIndex])) {
-				return;
-			}
+			this->takeQuest(player, currentQuests[chosenQuestIndex], isPlayerDead);
+
+			if (isPlayerDead) return;
 		}
 	} while (chosenQuestIndex != 0);
 }
 
-bool GameHandler::takeQuest(Player* player, Quest* quest) {
+void GameHandler::takeQuest(Player* player, Quest* quest, bool& isPlayerDead) {
 	bool questCompleted = quest->start();
 
 	if (!questCompleted) {
 		this->ui->showLostScreen(player);
 	}
 
-	return questCompleted;
+	isPlayerDead = !questCompleted;
 }
 
 void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) {
@@ -163,8 +166,10 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 			case 1:
 				break;
 			case 2:
-				bool questResult = false;
-				this->handleQuestMenu(player, currentQuests);
+				bool isPlayerDead = false;
+				this->handleQuestMenu(player, currentQuests, isPlayerDead);
+
+				if (isPlayerDead) return;
 				break;
 			case 3:
 				break;
@@ -207,6 +212,8 @@ void GameHandler::startGame() {
 		currentQuests = randomizeQuests();
 
 		this->handleTurn(currentPlayer, currentQuests);
+
+		if (currentPlayer->getHp() == 0) return;
 		currentTurn = this->turnHandler->getTurn();
 	}
 }

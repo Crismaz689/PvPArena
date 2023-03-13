@@ -48,4 +48,6 @@ public:
 	double getGold();
 
 	int getStamina();
+
+	int getHp();
 };

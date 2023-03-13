@@ -15,3 +15,7 @@ double Player::getGold() {
 int Player::getStamina() {
 	return this->stamina;
 }
+
+int Player::getHp() {
+	return this->hp;
+}
