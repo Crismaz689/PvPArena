@@ -129,7 +129,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PvPArena.cpp" />
+    <ClCompile Include="SourceFiles\Core\Arena.cpp" />
+    <ClCompile Include="SourceFiles\Core\Monster.cpp" />
     <ClCompile Include="SourceFiles\Core\Player\Player.cpp" />
+    <ClCompile Include="SourceFiles\Core\Shop.cpp" />
     <ClCompile Include="SourceFiles\Core\TurnHandler.cpp" />
     <ClCompile Include="SourceFiles\Core\EnumUtil.cpp" />
     <ClCompile Include="SourceFiles\Core\GameHandler.cpp" />
@@ -151,6 +154,9 @@
     <ClCompile Include="SourceFiles\Validators\ConsoleArgumentsValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HeaderFiles\Core\Arena.h" />
+    <ClInclude Include="HeaderFiles\Core\Monster.h" />
+    <ClInclude Include="HeaderFiles\Core\Shop.h" />
     <ClInclude Include="HeaderFiles\Core\TurnHandler.h" />
     <ClInclude Include="HeaderFiles\Core\Enums\ClassName.h" />
     <ClInclude Include="HeaderFiles\Core\Enums\ConsoleArgumentType.h" />

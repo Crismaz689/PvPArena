@@ -123,6 +123,15 @@
     <ClCompile Include="SourceFiles\Core\Player\Player.cpp">
       <Filter>Source Files\Core\Player</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Shop.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Monster.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Core\Arena.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\Validators\ConsoleArgumentsValidator.h">
@@ -207,6 +216,15 @@
       <Filter>Header Files\Core\Player</Filter>
     </ClInclude>
     <ClInclude Include="HeaderFiles\Core\TurnHandler.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Shop.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Arena.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\Core\Monster.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
