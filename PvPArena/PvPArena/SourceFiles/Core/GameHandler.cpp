@@ -107,7 +107,7 @@ std::vector<Quest*> GameHandler::randomizeQuests() {
 	return result;
 }
 
-void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead) {
+void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
 	int chosenOption = 0;
 
 	do {
@@ -126,29 +126,75 @@ void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*> currentQue
 	} while (chosenOption != 2);
 }
 
-void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead) {
+void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
 	int chosenQuestIndex = 0;
 
 	do {
 		this->ui->showCurrentQuests(currentQuests);
 		chosenQuestIndex = this->ui->getCurrentQuestOption(currentQuests);
 
-		if (chosenQuestIndex != 0) {
+		if (chosenQuestIndex + 1 != 0) { // getCurretQuestOption() returns option - 1
 			this->takeQuest(player, currentQuests[chosenQuestIndex], isPlayerDead);
+			this->deleteQuest(currentQuests, chosenQuestIndex);
 
-			if (isPlayerDead) return;
+			if (isPlayerDead) 
+				return;
 		}
-	} while (chosenQuestIndex != 0);
+	} while (chosenQuestIndex + 1!= 0);
+	this->ui->wipe();
 }
 
+void GameHandler::deleteQuest(std::vector<Quest*>& currentQuests, int chosenQuestIndex) {
+	std::string questDescriptionToDelete = currentQuests[chosenQuestIndex]->getDescription();
+
+	std::vector<Quest*>::iterator it = currentQuests.begin();
+	std::advance(it, chosenQuestIndex);
+	currentQuests.erase(it);
+
+	for (int i = 0; i < this->availableQuests.size(); ++i) {
+		if (this->availableQuests[i]->getDescription() == questDescriptionToDelete) {
+			std::vector<Quest*>::iterator it = this->availableQuests.begin();
+			std::advance(it, i);
+			this->availableQuests.erase(it);
+
+			return;
+		}
+	}
+};
+
 void GameHandler::takeQuest(Player* player, Quest* quest, bool& isPlayerDead) {
-	bool questCompleted = quest->start();
+	if (player->getStamina() < quest->getStaminaCost()) {
+		this->ui->showErrorMessage("You do not have enough stamina points to take this action.");
+		this->ui->waitForContinue();
+		this->ui->wipe();
+
+		return;
+	}
+
+	bool questCompleted = quest->start(this->ui);
 
 	if (!questCompleted) {
 		this->ui->showLostScreen(player);
+		isPlayerDead = !questCompleted;
 	}
+	else {
+		addGold(player, quest->getReward());
+		removeStamina(player, quest->getStaminaCost());
+	}
+}
 
-	isPlayerDead = !questCompleted;
+void GameHandler::addGold(Player*& player, double goldToAdd) {
+	double playerGold = player->getGold();
+	double totalGold = playerGold + goldToAdd;
+
+	player->setGold(totalGold);
+}
+
+void GameHandler::removeStamina(Player*& player, int staminaToLose) {
+	double playerStamina = player->getStamina();
+	double substractedStamina = playerStamina - staminaToLose;
+
+	player->setStamina(substractedStamina);
 }
 
 void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) {
@@ -161,12 +207,12 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 		this->ui->showTurnMenu(false);
 		chosenOption = this->ui->getTurnMenuOption();
 		this->ui->wipe();
+		bool isPlayerDead = false;
 
 		switch (chosenOption) {
 			case 1:
 				break;
 			case 2:
-				bool isPlayerDead = false;
 				this->handleQuestMenu(player, currentQuests, isPlayerDead);
 
 				if (isPlayerDead) return;

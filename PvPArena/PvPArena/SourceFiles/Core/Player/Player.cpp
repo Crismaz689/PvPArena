@@ -19,3 +19,11 @@ int Player::getStamina() {
 int Player::getHp() {
 	return this->hp;
 }
+
+void Player::setGold(double gold) {
+	this->gold = gold;
+}
+
+void Player::setStamina(int stamina) {
+	this->stamina = stamina;
+}

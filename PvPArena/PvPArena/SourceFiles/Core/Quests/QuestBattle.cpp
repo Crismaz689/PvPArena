@@ -4,7 +4,7 @@ std::string QuestBattle::getEnemyName() {
 	return this->enemyName;
 }
 
-bool QuestBattle::start() {
+bool QuestBattle::start(UI* ui) {
 
 	return false;
 }

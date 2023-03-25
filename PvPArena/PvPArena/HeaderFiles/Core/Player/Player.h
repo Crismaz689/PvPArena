@@ -50,4 +50,8 @@ public:
 	int getStamina();
 
 	int getHp();
+
+	void setStamina(int stamina);
+
+	void setGold(double gold);
 };

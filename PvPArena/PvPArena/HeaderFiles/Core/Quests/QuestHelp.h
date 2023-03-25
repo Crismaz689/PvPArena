@@ -1,5 +1,8 @@
 #pragma once
 
+#include <chrono>
+#include <thread>
+
 #include "Quest.h"
 
 class QuestHelp : public Quest {
@@ -13,7 +16,7 @@ public:
 
 	int getIdleTime();
 
-	bool start() override;
+	bool start(UI* ui) override;
 
 	~QuestHelp() {}
 };

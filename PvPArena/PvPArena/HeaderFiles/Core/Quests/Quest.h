@@ -2,10 +2,13 @@
 
 #include <string>
 
-#include "../Enums/QuestType.h"
+#include "../../UI/UI.h";
+#include "../Enums/QuestType.h";
+
+class UI;
 
 class Quest {
-private:
+protected:
 	QuestType type;
 
 	std::string description;
@@ -26,7 +29,7 @@ public:
 
 	std::string getDescription();
 
-	virtual bool start() = 0;
+	virtual bool start(UI* ui) = 0;
 
 	virtual ~Quest() {}
 };

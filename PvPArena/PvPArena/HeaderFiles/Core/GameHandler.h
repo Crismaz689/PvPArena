@@ -47,11 +47,17 @@ private:
 
 	void handleTurn(Player* player, std::vector<Quest*> currentQuests);
 
-	void handleQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead);
+	void handleQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead);
 
-	void chooseQuestMenu(Player* player, std::vector<Quest*> currentQuests, bool& isPlayerDead);
+	void chooseQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead);
 
 	void takeQuest(Player* player, Quest* quest, bool& isPlayerDead);
+
+	void addGold(Player*& player, double goldToAdd);
+
+	void removeStamina(Player*& player, int staminaToLose);
+
+	void deleteQuest(std::vector<Quest*>& currentQuests, int chosenQuestIndex);
 
 public:
 	GameHandler() {}

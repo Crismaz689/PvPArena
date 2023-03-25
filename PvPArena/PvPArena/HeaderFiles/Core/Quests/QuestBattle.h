@@ -22,7 +22,7 @@ public:
 
 	std::string getEnemyName();
 
-	bool start() override;
+	bool start(UI* ui) override;
 
 	~QuestBattle() {};
 };

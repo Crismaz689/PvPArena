@@ -6,6 +6,8 @@
 #include "../Core/Player/Player.h";
 #include "../Core/Quests/Quest.h";
 
+class Quest;
+
 class UI {
 public:
 	UI() {}
