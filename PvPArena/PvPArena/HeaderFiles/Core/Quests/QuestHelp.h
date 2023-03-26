@@ -16,7 +16,7 @@ public:
 
 	int getIdleTime();
 
-	bool start(UI* ui) override;
+	bool start(Player*& player, UI* ui) override;
 
 	~QuestHelp() {}
 };

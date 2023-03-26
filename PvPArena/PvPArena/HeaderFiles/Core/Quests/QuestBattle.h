@@ -1,28 +1,29 @@
 #pragma once
 
+#include "../Arena.h";
 #include "Quest.h"
 
 class QuestBattle : public Quest {
 private:
 	std::string enemyName;
 
-	int hp;
+	int enemyHp;
 
-	int minDmg;
+	int enemyMinDmg;
 
-	int maxDmg;
+	int enemyMaxDmg;
 
-	int chanceForBlock;
+	int enemyChanceForBlock;
 
 public:
 	QuestBattle(QuestType type, std::string description, int staminaCost, double reward,
 		std::string enemyName, int hp, int minDmg, int maxDmg, int chanceForBlock) :
 		Quest(type, description, staminaCost, reward),
-		enemyName(enemyName), hp(hp), minDmg(minDmg), maxDmg(maxDmg), chanceForBlock(chanceForBlock) {}
+		enemyName(enemyName), enemyHp(hp), enemyMinDmg(minDmg), enemyMaxDmg(maxDmg), enemyChanceForBlock(chanceForBlock) {}
 
 	std::string getEnemyName();
 
-	bool start(UI* ui) override;
+	bool start(Player*& player, UI* ui) override;
 
 	~QuestBattle() {};
 };

@@ -4,7 +4,8 @@ std::string QuestBattle::getEnemyName() {
 	return this->enemyName;
 }
 
-bool QuestBattle::start(UI* ui) {
+bool QuestBattle::start(Player*& player, UI* ui) {
+	Monster monster(this->enemyName, this->enemyHp, this->enemyMinDmg, this->enemyMaxDmg, this->enemyChanceForBlock);
 
-	return false;
+	return Arena::fightAgainstMonster(player, monster, ui);
 }

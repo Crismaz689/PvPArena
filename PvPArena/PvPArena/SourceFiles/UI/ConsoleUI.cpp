@@ -28,6 +28,17 @@ void ConsoleUI::showErrorMessage(std::string message) {
 	std::cout << "[ERROR]: " << message << "\n";
 }
 
+void ConsoleUI::showArenaResult(Player* player, bool didWin) {
+	std::cout << "\n[DUEL RESULT]: " << player->getName();
+
+	if (didWin) {
+		std::cout << " has won the fight!\n";
+	}
+	else {
+		std::cout << " has lost the fight!\n";
+	}
+}
+
 void ConsoleUI::showInfoMessage(std::string message) {
 	std::cout << "[INFO]: " << message << "\n";
 }
@@ -243,4 +254,11 @@ int ConsoleUI::getCurrentQuestOption(std::vector<Quest*> currentQuests) {
 
 void ConsoleUI::showLostScreen(Player* player) {
 	this->showInfoMessage("Player " + player->getName() + " has lost the game!");
+}
+
+void ConsoleUI::showFightStart() {
+	this->wipe();
+	std::cout << "\n\n=======================================\n";
+	std::cout << "============== FIGHT STARTS ==============\n";
+	std::cout << "=======================================\n\n";
 }

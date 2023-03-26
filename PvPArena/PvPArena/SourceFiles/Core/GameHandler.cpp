@@ -107,7 +107,7 @@ std::vector<Quest*> GameHandler::randomizeQuests() {
 	return result;
 }
 
-void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
+void GameHandler::handleQuestMenu(Player*& player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
 	int chosenOption = 0;
 
 	do {
@@ -126,7 +126,7 @@ void GameHandler::handleQuestMenu(Player* player, std::vector<Quest*>& currentQu
 	} while (chosenOption != 2);
 }
 
-void GameHandler::chooseQuestMenu(Player* player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
+void GameHandler::chooseQuestMenu(Player*& player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
 	int chosenQuestIndex = 0;
 
 	do {
@@ -162,7 +162,7 @@ void GameHandler::deleteQuest(std::vector<Quest*>& currentQuests, int chosenQues
 	}
 };
 
-void GameHandler::takeQuest(Player* player, Quest* quest, bool& isPlayerDead) {
+void GameHandler::takeQuest(Player*& player, Quest* quest, bool& isPlayerDead) {
 	if (player->getStamina() < quest->getStaminaCost()) {
 		this->ui->showErrorMessage("You do not have enough stamina points to take this action.");
 		this->ui->waitForContinue();
@@ -171,7 +171,7 @@ void GameHandler::takeQuest(Player* player, Quest* quest, bool& isPlayerDead) {
 		return;
 	}
 
-	bool questCompleted = quest->start(this->ui);
+	bool questCompleted = quest->start(player, this->ui);
 
 	if (!questCompleted) {
 		this->ui->showLostScreen(player);

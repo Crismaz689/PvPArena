@@ -22,6 +22,8 @@ public:
 
 	void showErrorMessage(std::string message) override;
 
+	void showArenaResult(Player* player, bool didWin) override;
+
 	void showExceptionMessage(std::string message) override;
 
 	void showCreatePlayerIntroduction(int playerNumber) override;
@@ -55,4 +57,6 @@ public:
 	std::string getPlayerName() override;
 
 	ClassName getClassName() override;
+
+	void showFightStart() override;
 };

@@ -22,6 +22,8 @@ public:
 
 	virtual void showErrorMessage(std::string message) = 0;
 
+	virtual void showArenaResult(Player* player, bool didWin) = 0;
+
 	virtual void showExceptionMessage(std::string message) = 0;
 
 	virtual void showCreatePlayerIntroduction(int playerNumber) = 0;
@@ -55,4 +57,6 @@ public:
 	virtual std::string getPlayerName() = 0;
 
 	virtual ClassName getClassName() = 0;
+
+	virtual void showFightStart() = 0;
 };

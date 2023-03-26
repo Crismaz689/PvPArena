@@ -29,7 +29,7 @@ public:
 
 	std::string getDescription();
 
-	virtual bool start(UI* ui) = 0;
+	virtual bool start(Player*& player, UI* ui) = 0;
 
 	virtual ~Quest() {}
 };

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConsoleArgumentsValidator" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAgAAABEAJAAAAIAEAEAAUAABAAAAAAIAAACAQBAQ=</HashCode>
+      <FileName>HeaderFiles\Validators\ConsoleArgumentsValidator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAQwBgAAAAAABgAAAkAAoEAAAQAEAIAAAAAAwGBA=</HashCode>
+      <FileName>HeaderFiles\UI\UI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleUI" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAQwBgAABAAABgQAAkAAgEAAAQAEAIAAAAAAwCBA=</HashCode>
+      <FileName>HeaderFiles\UI\ConsoleUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHandler" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAIAAQAAAAAAUAAAAEACAAAg=</HashCode>
+      <FileName>HeaderFiles\Helpers\FileHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileNotFoundException" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAACAAAAAAAEAAAAAAAAAACA=</HashCode>
+      <FileName>HeaderFiles\Exceptions\FileNotFoundException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileInvalidExtensionException" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAQAAAAAAAAACAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>HeaderFiles\Exceptions\FileInvalidExtensionException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileCouldNotBeOpenedException" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACEAAAAAAAAgAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>HeaderFiles\Exceptions\FileCouldNotBeOpenedException.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnHandler" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAACAAAAQAAAAAEAAAAAAIBAAA=</HashCode>
+      <FileName>HeaderFiles\Core\TurnHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shop" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Shop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monster" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Monster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIIAAADQAgAAAAAAAAAAEABAFAAAIQABAAIAAAII=</HashCode>
+      <FileName>HeaderFiles\Core\Item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameHandler" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAABApAAEAAAgKESAACAAAAAAAAgAUAIFACAyAA=</HashCode>
+      <FileName>HeaderFiles\Core\GameHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnumUtil" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAACQAAABAAAAIAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\EnumUtil.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arena" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Arena.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestHelp" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAQAAAAAAAgAAAAAAAAAAEAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Quests\QuestHelp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestBattle" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAIAAAggAIAAAAAAAAAAAAACQABAAAAgAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Quests\QuestBattle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quest" Collapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABEAMAAAAgAAAgIAAAAAAAAQABAAAAABAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Quests\Quest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Warrior" Collapsed="true">
+    <Position X="7" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Warrior.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sniper" Collapsed="true">
+    <Position X="17.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Sniper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIYAABBQAgAUCAAAAAAAQABQFAAAEQABEAUAAABI=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paladin" Collapsed="true">
+    <Position X="9" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAABAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Paladin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mage" Collapsed="true">
+    <Position X="11.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAACA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Mage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Berserker" Collapsed="true">
+    <Position X="15" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Berserker.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Archer" Collapsed="true">
+    <Position X="13.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Player\Archer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="QuestType" Collapsed="true">
+    <Position X="17.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\QuestType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="QuestHelpFilePosition" Collapsed="true">
+    <Position X="17.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABAQAAAAAQAQA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\QuestHelpFilePosition.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ItemType" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAABAAAAAAAQAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\ItemType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="QuestBattleFilePosition" Collapsed="true">
+    <Position X="17.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAgAgEAAAAAAAAAAAAAAAAAAQAAACAQAUA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\QuestBattleFilePosition.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ItemFilePosition" Collapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEBACAAQCAAAAQAAAAAAAAAABAAAAAAAAAAgAAQiA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\ItemFilePosition.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ConsoleArgumentType" Collapsed="true">
+    <Position X="17.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\ConsoleArgumentType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ClassName" Collapsed="true">
+    <Position X="17.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAABAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAIAAIA=</HashCode>
+      <FileName>HeaderFiles\Core\Enums\ClassName.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -4,11 +4,11 @@ int QuestHelp::getIdleTime() {
 	return this->idleTimeInSeconds;
 }
 
-bool QuestHelp::start(UI* ui) {
+bool QuestHelp::start(Player*& player, UI* ui) {
 	int remainingTime = this->idleTimeInSeconds;
 
 	do {
-		ui->showInfoMessage("Mission \"" + this->description + "\" is in progress, remaining time: " + std::to_string(remainingTime) + " seconds.");
+		ui->showInfoMessage(player->getName() + " is doing the mission \"" + this->description + "\" is in progress, remaining time: " + std::to_string(remainingTime) + " seconds.");
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		remainingTime--;
 	} while (remainingTime != 0);
