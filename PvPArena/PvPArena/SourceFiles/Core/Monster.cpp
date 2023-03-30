@@ -8,7 +8,7 @@ int Monster::getHP() {
 	return this->hp;
 }
 
-void Monster::substractHP(int damage) {
+void Monster::substractHp(int damage) {
 	this->hp = this->hp - damage;
 }
 

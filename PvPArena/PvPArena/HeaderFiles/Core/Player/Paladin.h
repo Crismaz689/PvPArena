@@ -3,6 +3,11 @@
 #include "Player.h"
 
 class Paladin : public Player {
+private:
+	const int INITIAL_DAMAGE = 2;
+
+	const int DAMAGE_DIVIDER = 2;
+
 public:
 	Paladin(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 120;

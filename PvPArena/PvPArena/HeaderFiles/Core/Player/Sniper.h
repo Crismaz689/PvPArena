@@ -3,6 +3,9 @@
 #include "Player.h";
 
 class Sniper : public Player {
+private:
+	const int INITIAL_DAMAGE = 10;
+
 public:
 	Sniper(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 100;
@@ -18,4 +21,6 @@ public:
 	~Sniper() {}
 
 	int calculateDamage() override;
+
+	bool isCurrentAttackDoubled();
 };

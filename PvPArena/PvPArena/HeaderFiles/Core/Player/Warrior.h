@@ -3,6 +3,9 @@
 #include "Player.h";
 
 class Warrior : public Player {
+private:
+	const int INITIAL_DAMAGE = 5;
+
 public:
 	Warrior(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 150;

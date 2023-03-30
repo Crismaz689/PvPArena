@@ -20,7 +20,7 @@ public:
 
 	int getHP();
 
-	void substractHP(int damage);
+	void substractHp(int damage);
 
 	int getAttackValue();
 

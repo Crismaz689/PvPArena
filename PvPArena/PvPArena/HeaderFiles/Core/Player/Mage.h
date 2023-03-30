@@ -3,6 +3,9 @@
 #include "Player.h";
 
 class Mage : public Player {
+private:
+	const int INITIAL_DAMAGE = 6;
+
 public:
 	Mage(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 80;
@@ -18,4 +21,6 @@ public:
 	~Mage() {}
 
 	int calculateDamage() override;
+
+	bool isHitCritical() override;
 };

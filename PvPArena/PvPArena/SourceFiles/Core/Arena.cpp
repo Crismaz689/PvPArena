@@ -35,7 +35,62 @@ void Arena::attackPlayerByMonster(Monster& monster, Player*& player, UI* ui) {
 }
 
 void Arena::attackMonsterByPlayer(Player*& player, Monster& monster, UI* ui) {
+    if (monster.isAttackBlocked()) {
+        ui->showInfoMessage("Monster has blocked your attack!");
+    }
+    else {
+        bool isAttackRepeated = false;
+        bool isCriticalHit = player->isHitCritical();
+        int playerAttackDamageValue = isCriticalHit ?
+            player->calculateDamage() * 2 :
+            player->calculateDamage();
 
+        monster.substractHp(playerAttackDamageValue);
+
+        ui->showInfoMessage(player->getName() + " attacks " + monster.getName() + " and deals " + std::to_string(playerAttackDamageValue) + " damage!");
+
+        if (isCriticalHit) {
+            ui->showInfoMessage("That was a critical hit!");
+        }
+
+        if (monster.getHP() <= 0) {
+            ui->showInfoMessage(monster.getName() + " has died!");
+        }
+        else {
+            ui->showInfoMessage(monster.getName() + " has " + std::to_string(monster.getHP()) + " HP");
+        }
+
+        if (player->getClassName() == ClassName::Archer && monster.getHP() <= 0) {
+            player = dynamic_cast<Archer*>(player);
+
+            isCriticalHit = player->isHitCritical();
+            playerAttackDamageValue = isCriticalHit ?
+                player->calculateDamage() * 2 :
+                player->calculateDamage();
+        }
+        else if (player->getClassName() == ClassName::Sniper && monster.getHP() <= 0) {
+            player = dynamic_cast<Sniper*>(player);
+
+            isCriticalHit = player->isHitCritical();
+            playerAttackDamageValue = isCriticalHit ?
+                player->calculateDamage() * 2 :
+                player->calculateDamage();
+        }
+
+        ui->showInfoMessage(player->getName() + " attacks second time " + monster.getName() + " and deals " + std::to_string(playerAttackDamageValue) + " damage!");
+
+        if (isCriticalHit) {
+            ui->showInfoMessage("That was a critical hit!");
+        }
+
+        if (monster.getHP() <= 0) {
+            ui->showInfoMessage(monster.getName() + " has died!");
+        }
+        else {
+            ui->showInfoMessage(monster.getName() + " has " + std::to_string(monster.getHP()) + " HP");
+        }
+
+    }
 }
 
 void Arena::attackPlayerByPlayer(Player*& playerA, Player*& playerB, UI* ui) {

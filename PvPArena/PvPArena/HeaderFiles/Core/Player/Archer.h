@@ -3,6 +3,11 @@
 #include "Player.h";
 
 class Archer : public Player {
+private:
+	const int REPEAT_ATTACK_CHANCE_MULTIPLIER = 3;
+
+	const int INITIAL_DAMAGE = 4;
+
 public:
 	Archer(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 120;
@@ -18,4 +23,6 @@ public:
 	~Archer() {}
 
 	int calculateDamage() override;
+
+	bool isCurrentAttackDoubled();
 };

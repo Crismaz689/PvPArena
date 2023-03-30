@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Core/Player/Archer.h";
+#include "../Core/Player/Sniper.h";
 #include "../UI/UI.h";
 #include "Player/Player.h";
 #include "Monster.h";

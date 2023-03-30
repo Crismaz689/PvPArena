@@ -39,6 +39,8 @@ public:
 
 	virtual int calculateDamage() = 0;
 
+	virtual bool isHitCritical();
+
 	virtual ~Player() {}
 
 	void resetHp();
@@ -50,6 +52,8 @@ public:
 	int getStamina();
 
 	int getHp();
+
+	ClassName getClassName();
 
 	void setStamina(int stamina);
 

@@ -27,3 +27,13 @@ void Player::setGold(double gold) {
 void Player::setStamina(int stamina) {
 	this->stamina = stamina;
 }
+
+bool Player::isHitCritical() {
+	int x = rand() % 101 + 1;
+
+	return x > 0 && x <= criticalChance;
+}
+
+ClassName Player::getClassName() {
+	return this->className;
+}

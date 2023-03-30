@@ -1,5 +1,11 @@
 #include "../../../HeaderFiles/Core/Player/Sniper.h";
 
 int Sniper::calculateDamage() {
-	return 0;
+	return rand() % this->INITIAL_DAMAGE + (dexterity - (dexterity / this->INITIAL_DAMAGE));
+}
+
+bool Sniper::isCurrentAttackDoubled() {
+	int x = rand() % 101 + 1;
+
+	return x > 0 && x <= dexterity;
 }

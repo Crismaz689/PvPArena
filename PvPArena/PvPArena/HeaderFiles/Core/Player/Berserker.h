@@ -3,6 +3,11 @@
 #include "Player.h";
 
 class Berserker : public Player {
+private:
+	const int INITIAL_DAMAGE = 3;
+
+	const int DAMAGE_VALUE_DIVIDER_FOR_HP = 100;
+
 public:
 	Berserker(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 120;
