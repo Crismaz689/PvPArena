@@ -23,4 +23,6 @@ public:
 	~Berserker() {}
 
 	int calculateDamage() override;
+
+	bool calculateBlockChance();
 };

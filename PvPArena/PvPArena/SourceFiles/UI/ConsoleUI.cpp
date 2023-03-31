@@ -75,13 +75,17 @@ void ConsoleUI::waitForContinue() {
 	std::system("PAUSE");
 }
 
+void ConsoleUI::enter() {
+	std::cout << "\n";
+}
+
 void ConsoleUI::showTurnInfo(Player* player, int currentTurn, int currentDay) {
 	std::cout << "===== [DAY: " << currentDay << "] =====\n";
 	std::cout << "===== [TURN: " << currentTurn << "] =====\n";
 	std::string message = player->getName() + ", it's your turn!\n\n";
 	this->showInfoMessage(message);
 
-	std::cout << "[STAMINA: " << player->getStamina() << "]\t\t\t" << "[GOLD: " << player->getGold() << "]\n";
+	std::cout << "[STAMINA: " << player->getStamina() << "]\t\t\t" << "[GOLD: " << player->getGold() << "]\t\t\t" << "[HP: " << player->getHp() << "/" << player->getMaxHp() << "]\n";
 }
 
 void ConsoleUI::showTurnMenu(bool isChallenged) {
@@ -164,15 +168,21 @@ ClassName ConsoleUI::getClassName() {
 			std::cout << "\n\n";
 		}
 	}
-	std::cout << "Your class is: " << EnumUtil::convertIntToStringClassName(classNameValue) << "\n\n";
+	std::cout << "Your class is: " << EnumUtil::convertIntToStringClassName(classNameValue - 1) << "\n\n";
 	std::system("PAUSE");
 
-	return (ClassName)classNameValue;
+	return (ClassName)(classNameValue - 1);
 }
 
 void ConsoleUI::showQuestsMenu() {
 	std::cout << "===== QUEST OPTIONS =====\n";
 	std::cout << "1. Show quest list\n";
+	std::cout << "2. Back to main menu\n\n";
+}
+
+void ConsoleUI::showShopMenu() {
+	std::cout << "===== SHOP OPTIONS =====\n";
+	std::cout << "1. Show available items\n";
 	std::cout << "2. Back to main menu\n\n";
 }
 
@@ -202,6 +212,79 @@ int ConsoleUI::getQuestMenuOption() {
 	}
 
 	return optionAsInt;
+}
+
+int ConsoleUI::getShopMenuOption() {
+	std::string option = "";
+	int optionAsInt = 0;
+	bool isOptionValid = false;
+
+	while (!isOptionValid) {
+		std::cout << "[SHOP MENU]: What do you want to do now?: ";
+		std::cin >> option;
+
+		try {
+			optionAsInt = stoi(option);
+
+			if (optionAsInt > 0 && optionAsInt < 3) {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: You have to choose number between 1 and 2!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	return optionAsInt;
+}
+
+
+void ConsoleUI::showAvailableItems(Shop* shop) {
+	std::vector<Item> items = shop->getItems();
+
+	std::cout << "===== AVAILABLE ITEMS FOR YOUR CLASS =====\n";
+
+	if (items.size() == 0) {
+		std::cout << "There are no items in the shop.." << "\n\n";
+	}
+
+	std::cout << "0. Back to shop menu\n\n";
+	for (int i = 0; i < items.size(); ++i) {
+		std::cout << (i + 1) << ". " << items[i].getName() << "\n";
+	}
+}
+
+int ConsoleUI::getCurrentShopOption(Shop* shop) {
+	std::string chosenItemIndex = "";
+	int chosenItemtIndexAsInt = 0;
+	bool isOptionValid = false;
+	std::vector<Item> items = shop->getItems();
+
+	while (!isOptionValid) {
+		std::cout << "[QUEST MENU]: Which quest do you want to take?: ";
+		std::cin >> chosenItemIndex;
+
+		try {
+			chosenItemtIndexAsInt = stoi(chosenItemIndex);
+
+			if (chosenItemtIndexAsInt >= 0 && chosenItemtIndexAsInt < items.size() + 1) {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: You have to choose number between 1 and " << items.size() << "!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	return chosenItemtIndexAsInt - 1;
 }
 
 void ConsoleUI::showCurrentQuests(std::vector<Quest*> currentQuests) {
@@ -261,4 +344,61 @@ void ConsoleUI::showFightStart() {
 	std::cout << "\n\n=======================================\n";
 	std::cout << "============== FIGHT STARTS ==============\n";
 	std::cout << "=======================================\n\n";
+}
+
+void ConsoleUI::showPlayerDetails(Player* player) {
+	this->showInfoMessage("You are playing as " + EnumUtil::convertIntToStringClassName((int)player->getClassName()) + "!");
+	this->enter();
+
+	std::cout << "HP: " << player->getHp() << "/" << player->getMaxHp() << "\n";
+	std::cout << "Defense: " << player->getDefense() << "\n";
+	std::cout << "Magic defense: " << player->getMagicDefense() << "\n";
+	std::cout << "Strength: " << player->getStrength() << "\n";
+	std::cout << "Intelligence: " << player->getIntelligence() << "\n";
+	std::cout << "Dexterity: " << player->getDexterity() << "\n";
+	std::cout << "Critical chance: " << player->getCriticalChance() << "\n";
+
+	this->waitForContinue();
+	this->wipe();
+}
+
+void ConsoleUI::showPlayerEquipment(Player* player) {
+	std::cout << "\t\t[ITEM NAME]\t[HP]\t[DEFENSE]\t[MAGIC DEFENSE]\t[STRENGTH]\t[INTELLIGENCE]\t[DEXTERITY]\t[CRITICAL CHANCE]\n\n";
+
+	bool itemFound = false;
+	for (int i = 0; i < Item::NUMBER_OF_ARMOR_PARTS; i++) {
+		itemFound = false;
+		for (auto& item : player->getItems()) {
+			if (Player::EQUIPMENT[i] == item.getType()) {
+				std::cout << "[" << EnumUtil::convertItemTypeToString(Player::EQUIPMENT[i]) << "]:\t";
+				this->showItemInfo(item);
+				itemFound = true;
+				break;
+			}
+		}
+		if (!itemFound)
+			std::cout << "[" << EnumUtil::convertItemTypeToString(Player::EQUIPMENT[i]) << "]:\t-no item-\n";
+	}
+	
+	this->waitForContinue();
+	this->wipe();
+}
+
+void ConsoleUI::showItemInfo(Item item) {
+	std::cout << item.getName() << "\t" << std::to_string(item.getHp()) << "\t" << std::to_string(item.getDefense()) << "\t\t "
+		<< std::to_string(item.getMagicDefense()) << "\t\t " << std::to_string(item.getStrength()) << "\t\t " 
+		<< std::to_string(item.getIntelligence()) << "\t\t " << std::to_string(item.getDexterity()) << "\t\t " 
+		<< std::to_string(item.getCriticalChance()) << "\n";
+}
+
+void ConsoleUI::showItemDetails(Shop* shop, int itemIndex) {
+
+}
+
+bool ConsoleUI::showBuyDecision() {
+	std::cout << "[ITEM MENU] Do you want to buy the item ? Y/N: ";
+
+	// xd
+
+	return false;
 }

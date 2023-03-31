@@ -14,6 +14,7 @@
 #include "./Item.h";
 #include "./TurnHandler.h";
 #include "./Quests/Quest.h";
+#include "./Shop.h";
 
 class GameHandler {
 private:
@@ -23,7 +24,7 @@ private:
 
 	std::vector<Quest*> doneQuests;
 	
-	std::vector<Item> availableItems;
+	Shop* shop = nullptr;
 
 	UI* ui = nullptr;
 
@@ -51,13 +52,17 @@ private:
 
 	void chooseQuestMenu(Player*& player, std::vector<Quest*>& currentQuests, bool& isPlayerDead);
 
-	void takeQuest(Player*& player, Quest* quest, bool& isPlayerDead);
+	bool takeQuest(Player*& player, Quest* quest, bool& isPlayerDead);
 
 	void addGold(Player*& player, double goldToAdd);
 
 	void removeStamina(Player*& player, int staminaToLose);
 
 	void deleteQuest(std::vector<Quest*>& currentQuests, int chosenQuestIndex);
+
+	void handleShopMenu(Player*& player);
+
+	void chooseShopMenu(Player*& player);
 
 public:
 	GameHandler() {}

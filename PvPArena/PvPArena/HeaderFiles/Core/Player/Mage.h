@@ -15,7 +15,7 @@ public:
 		this->strength = 3;
 		this->intelligence = 25;
 		this->dexterity = 5;
-		this->criticalChance = 1;
+		this->criticalChance = 0;
 	}
 
 	~Mage() {}

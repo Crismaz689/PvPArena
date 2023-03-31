@@ -1,7 +1,8 @@
 #include "../../../HeaderFiles/Core/Player/Player.h";
 
-void Player::resetHp() {
+void Player::resetStats() {
 	this->hp = this->maxHP;
+	this->stamina = this->MAX_STAMINA_LEVEL;
 }
 
 std::string Player::getName() {
@@ -20,6 +21,10 @@ int Player::getHp() {
 	return this->hp;
 }
 
+int Player::getMaxHp() {
+	return this->maxHP;
+}
+
 void Player::setGold(double gold) {
 	this->gold = gold;
 }
@@ -36,4 +41,36 @@ bool Player::isHitCritical() {
 
 ClassName Player::getClassName() {
 	return this->className;
+}
+
+void Player::substractHp(int hpToSubtract) {
+	this->hp = this->hp - hpToSubtract;
+}
+
+int Player::getDefense() {
+	return this->defense;
+}
+
+int Player::getMagicDefense() {
+	return this->magicDefense;
+}
+
+int Player::getStrength() {
+	return this->strength;
+}
+
+int Player::getIntelligence() {
+	return this->intelligence;
+}
+
+int Player::getDexterity() {
+	return this->dexterity;
+}
+
+int Player::getCriticalChance() {
+	return this->criticalChance;
+}
+
+std::vector<Item> Player::getItems() {
+	return this->items;
 }

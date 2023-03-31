@@ -2,6 +2,10 @@
 
 #include "../Core/Player/Archer.h";
 #include "../Core/Player/Sniper.h";
+#include "../Core/Player/Berserker.h";
+#include "../Core/Player/Warrior.h";
+#include "../Core/Player/Mage.h";
+#include "../Core/Player/Paladin.h";
 #include "../UI/UI.h";
 #include "Player/Player.h";
 #include "Monster.h";

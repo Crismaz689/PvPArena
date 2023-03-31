@@ -9,3 +9,9 @@ bool Sniper::isCurrentAttackDoubled() {
 
 	return x > 0 && x <= dexterity;
 }
+
+bool Sniper::calculateDodgeChance() {
+	int x = rand() % 101 + 1;
+
+	return x > 0 && x <= this->dexterity + (dexterity - (dexterity / this->INITIAL_DAMAGE));
+}

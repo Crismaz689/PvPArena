@@ -8,6 +8,8 @@
 
 class Player {
 protected:
+	const int MAX_STAMINA_LEVEL = 100;
+
 	int maxHP = 0;
 
 	int hp = 0;
@@ -30,11 +32,14 @@ protected:
 
 	int stamina;
 
-	std::vector<Item> ownedItems;
+	std::vector<Item> items;
 
 	ClassName className;
 
 public:
+	static inline ItemType EQUIPMENT[Item::NUMBER_OF_ARMOR_PARTS] = {
+		ItemType::Helmet, ItemType::Chest, ItemType::Weapon, ItemType::Pants, ItemType::Boots };
+
 	Player(std::string name, ClassName className) : name(name), className(className), gold(0), stamina(100) {}
 
 	virtual int calculateDamage() = 0;
@@ -43,7 +48,7 @@ public:
 
 	virtual ~Player() {}
 
-	void resetHp();
+	void resetStats();
 
 	std::string getName();
 
@@ -53,9 +58,27 @@ public:
 
 	int getHp();
 
+	int getMaxHp();
+
+	int getDefense();
+
+	int getMagicDefense();
+
+	int getStrength();
+
+	int getIntelligence();
+
+	int getDexterity();
+
+	int getCriticalChance();
+
 	ClassName getClassName();
 
 	void setStamina(int stamina);
 
 	void setGold(double gold);
+
+	void substractHp(int hpToSubtract);
+
+	std::vector<Item> getItems();
 };

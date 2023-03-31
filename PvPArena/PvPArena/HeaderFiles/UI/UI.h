@@ -5,6 +5,7 @@
 #include "../Core/Enums/ClassName.h";
 #include "../Core/Player/Player.h";
 #include "../Core/Quests/Quest.h";
+#include "../Core/Shop.h";
 
 class Quest;
 
@@ -31,6 +32,8 @@ public:
 	virtual void showCreatePlayerClassSelection(int playerNumber) = 0;
 
 	virtual void showClassList() = 0;
+
+	virtual void enter() = 0;
 
 	virtual void waitForContinue() = 0;
 
@@ -59,4 +62,22 @@ public:
 	virtual ClassName getClassName() = 0;
 
 	virtual void showFightStart() = 0;
+
+	virtual void showPlayerDetails(Player* player) = 0;
+
+	virtual void showPlayerEquipment(Player* player) = 0;
+
+	virtual void showItemInfo(Item item) = 0;
+
+	virtual void showShopMenu() = 0;
+
+	virtual int getShopMenuOption() = 0;
+
+	virtual void showAvailableItems(Shop* shop) = 0;
+
+	virtual int getCurrentShopOption(Shop* shop) = 0;
+
+	virtual void showItemDetails(Shop* shop, int itemIndex) = 0;
+
+	virtual bool showBuyDecision() = 0;
 };

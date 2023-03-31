@@ -23,4 +23,6 @@ public:
 	~Paladin() {}
 
 	int calculateDamage() override;
+
+	bool calculateBlockChance();
 };

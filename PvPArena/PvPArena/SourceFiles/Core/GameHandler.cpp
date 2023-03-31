@@ -11,12 +11,13 @@ GameHandler::~GameHandler() {
 
 	this->doneQuests.clear();
 	this->availableQuests.clear();
-	this->availableItems.clear();
 
+	delete this->shop;
 	delete this->turnHandler;
 	delete this->playerA;
 	delete this->playerB;
 
+	this->shop = nullptr;
 	this->playerA = nullptr;
 	this->playerB = nullptr;
 	this->turnHandler = nullptr;
@@ -28,7 +29,8 @@ void GameHandler::initializeItems(int argc, char* const argv[]) {
 		std::string(argv[2]) :
 		std::string(argv[4]);
 
-	this->availableItems = fileHandler.readItemsFromFile(fileName, this->ui);
+	std::vector<Item> items = fileHandler.readItemsFromFile(fileName, this->ui);
+	this->shop = new Shop(items);
 }
 
 void GameHandler::initializeQuests(int argc, char* const argv[]) {
@@ -126,6 +128,48 @@ void GameHandler::handleQuestMenu(Player*& player, std::vector<Quest*>& currentQ
 	} while (chosenOption != 2);
 }
 
+void GameHandler::handleShopMenu(Player*& player) {
+	int chosenOption = 0;
+
+	do {
+		this->ui->showShopMenu();
+		chosenOption = this->ui->getShopMenuOption();
+		this->ui->wipe();
+
+		switch (chosenOption) {
+		case 1:
+			this->chooseShopMenu(player);
+
+			break;
+		}
+	} while (chosenOption != 2);
+}
+
+void GameHandler::chooseShopMenu(Player*& player) {
+	int chosenItemIndex = 0;
+
+	do {
+		this->ui->showAvailableItems(this->shop);
+		chosenItemIndex = this->ui->getCurrentShopOption(this->shop);
+
+		if (chosenItemIndex + 1 != 0) { // getCurrentSopOption() returns option - 1
+			this->ui->showItemDetails(this->shop, chosenItemIndex);
+			bool doYouWantToBuyAnItem = this->ui->showBuyDecision();
+
+			if (doYouWantToBuyAnItem) {
+				// check gold amount
+				// add item to a user
+				// delete item from shop
+				// show transaction status
+
+				// void ConsoleUI::showItemDetails(Shop* shop, int itemIndex)
+				// bool ConsoleUI::showBuyDecision()
+			}
+		}
+	} while (chosenItemIndex + 1 != 0);
+	this->ui->wipe();
+}
+
 void GameHandler::chooseQuestMenu(Player*& player, std::vector<Quest*>& currentQuests, bool& isPlayerDead) {
 	int chosenQuestIndex = 0;
 
@@ -133,9 +177,9 @@ void GameHandler::chooseQuestMenu(Player*& player, std::vector<Quest*>& currentQ
 		this->ui->showCurrentQuests(currentQuests);
 		chosenQuestIndex = this->ui->getCurrentQuestOption(currentQuests);
 
-		if (chosenQuestIndex + 1 != 0) { // getCurretQuestOption() returns option - 1
-			this->takeQuest(player, currentQuests[chosenQuestIndex], isPlayerDead);
-			this->deleteQuest(currentQuests, chosenQuestIndex);
+		if (chosenQuestIndex + 1 != 0) { // getCurrentQuestOption() returns option - 1
+			if (this->takeQuest(player, currentQuests[chosenQuestIndex], isPlayerDead))
+				this->deleteQuest(currentQuests, chosenQuestIndex);
 
 			if (isPlayerDead) 
 				return;
@@ -162,13 +206,13 @@ void GameHandler::deleteQuest(std::vector<Quest*>& currentQuests, int chosenQues
 	}
 };
 
-void GameHandler::takeQuest(Player*& player, Quest* quest, bool& isPlayerDead) {
+bool GameHandler::takeQuest(Player*& player, Quest* quest, bool& isPlayerDead) {
 	if (player->getStamina() < quest->getStaminaCost()) {
 		this->ui->showErrorMessage("You do not have enough stamina points to take this action.");
 		this->ui->waitForContinue();
 		this->ui->wipe();
 
-		return;
+		return false;
 	}
 
 	bool questCompleted = quest->start(player, this->ui);
@@ -181,6 +225,8 @@ void GameHandler::takeQuest(Player*& player, Quest* quest, bool& isPlayerDead) {
 		addGold(player, quest->getReward());
 		removeStamina(player, quest->getStaminaCost());
 	}
+
+	return true;
 }
 
 void GameHandler::addGold(Player*& player, double goldToAdd) {
@@ -218,10 +264,13 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 				if (isPlayerDead) return;
 				break;
 			case 3:
+				this->handleShopMenu(player);
 				break;
 			case 4:
+				this->ui->showPlayerDetails(player);
 				break;
 			case 5:
+				this->ui->showPlayerEquipment(player);
 				break;
 			case 6:
 				this->ui->showInfoMessage("You finished your turn!");
@@ -254,12 +303,12 @@ void GameHandler::startGame() {
 			this->playerA :
 			this->playerB;
 
-		currentPlayer->resetHp();
+		currentPlayer->resetStats();
 		currentQuests = randomizeQuests();
 
 		this->handleTurn(currentPlayer, currentQuests);
 
-		if (currentPlayer->getHp() == 0) return;
+		if (currentPlayer->getHp() <= 0) return;
 		currentTurn = this->turnHandler->getTurn();
 	}
 }

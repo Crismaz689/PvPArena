@@ -30,6 +30,8 @@ public:
 
 	void showCreatePlayerClassSelection(int playerNumber) override;
 
+	void enter() override;
+
 	void showClassList() override;
 
 	void showInfoMessage(std::string message) override;
@@ -59,4 +61,22 @@ public:
 	ClassName getClassName() override;
 
 	void showFightStart() override;
+
+	void showPlayerDetails(Player* player) override;
+
+	void showPlayerEquipment(Player* player) override;
+
+	void showItemInfo(Item item) override;
+
+	void showShopMenu() override;
+
+	int getShopMenuOption() override;
+
+	void showAvailableItems(Shop* shop) override;
+
+	int getCurrentShopOption(Shop* shop) override;
+
+	void showItemDetails(Shop* shop, int itemIndex) override;
+
+	bool showBuyDecision() override;
 };

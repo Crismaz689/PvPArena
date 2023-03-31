@@ -50,3 +50,18 @@ QuestType EnumUtil::convertStringToQuestType(std::string word) {
 		QuestType::Battle :
 		QuestType::Help;
 }
+
+std::string EnumUtil::convertItemTypeToString(ItemType type) {
+	switch (type) {
+		case ItemType::Helmet:
+			return "Helmet";
+		case ItemType::Chest:
+			return "Chest";
+		case ItemType::Weapon:
+			return "Weapon";
+		case ItemType::Pants:
+			return "Pants";
+		default:
+			return "Boots";
+	}
+}

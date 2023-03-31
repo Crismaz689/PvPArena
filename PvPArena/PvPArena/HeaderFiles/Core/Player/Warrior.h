@@ -21,4 +21,6 @@ public:
 	~Warrior() {}
 
 	int calculateDamage() override;
+
+	bool calculateBlockChance();
 };

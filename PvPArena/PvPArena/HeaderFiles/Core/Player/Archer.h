@@ -25,4 +25,6 @@ public:
 	int calculateDamage() override;
 
 	bool isCurrentAttackDoubled();
+
+	bool calculateDodgeChance();
 };

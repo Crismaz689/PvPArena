@@ -7,7 +7,6 @@
 
 class Item {
 private:
-	int maxHP;
 	int hp;
 	int defense;
 	int magicDefense;
@@ -26,12 +25,30 @@ public:
 
 	Item(int hp, int defense, int magicDefense, int strength, int intelligence, int dexterity,
 		int criticalChance, std::string name, double price, ItemType type, ClassName className) :
-		maxHP(hp), hp(hp), defense(defense), magicDefense(magicDefense), strength(strength), intelligence(intelligence),
+		hp(hp), defense(defense), magicDefense(magicDefense), strength(strength), intelligence(intelligence),
 		dexterity(dexterity), criticalChance(criticalChance), name(name), price(price), type(type), className(className) {}
 
 	~Item() {}
 
-	std::string test() { return this->name; }
+	ItemType getType();
 
-	double test2() { return this->price; }
+	std::string getName();
+
+	double getPrice();
+
+	ClassName getClassName();
+
+	int getHp();
+
+	int getDefense();
+
+	int getMagicDefense();
+
+	int getStrength();
+
+	int getIntelligence();
+
+	int getDexterity();
+
+	int getCriticalChance();
 };

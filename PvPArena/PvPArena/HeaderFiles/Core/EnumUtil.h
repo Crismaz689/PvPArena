@@ -19,5 +19,7 @@ public:
 
 	static ItemType convertStringToItemType(std::string word);
 
+	static std::string convertItemTypeToString(ItemType type);
+
 	static QuestType convertStringToQuestType(std::string word);
 };
