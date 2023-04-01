@@ -1,15 +1,7 @@
 #include "../../HeaderFiles/Core/GameHandler.h";
 
 GameHandler::~GameHandler() {
-	for (auto quest : this->availableQuests) {
-		delete quest;
-	}
-
-	for (auto quest : this->doneQuests) {
-		delete quest;
-	}
-
-	this->doneQuests.clear();
+	std::for_each(this->availableQuests.begin(), this->availableQuests.end(), MemoryHandler::deletePointer<Quest>);
 	this->availableQuests.clear();
 
 	delete this->shop;

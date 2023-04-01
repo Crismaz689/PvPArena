@@ -182,6 +182,7 @@
     <ClInclude Include="HeaderFiles\Exceptions\FileInvalidExtensionException.h" />
     <ClInclude Include="HeaderFiles\Exceptions\FileNotFoundException.h" />
     <ClInclude Include="HeaderFiles\Helpers\FileHandler.h" />
+    <ClInclude Include="HeaderFiles\Helpers\MemoryHandler.h" />
     <ClInclude Include="HeaderFiles\UI\ConsoleUI.h" />
     <ClInclude Include="HeaderFiles\UI\UI.h" />
     <ClInclude Include="HeaderFiles\Validators\ConsoleArgumentsValidator.h" />

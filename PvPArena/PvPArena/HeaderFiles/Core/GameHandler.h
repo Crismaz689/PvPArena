@@ -1,9 +1,11 @@
 #pragma once
 
+#include <algorithm>
 #include <vector>
 
 #include "./../UI/UI.h";
 #include "./../Helpers/FileHandler.h";
+#include "./../Helpers/MemoryHandler.h";
 #include "./Player/Player.h";
 #include "./Player/Warrior.h";
 #include "./Player/Mage.h";
@@ -21,8 +23,6 @@ private:
 	const unsigned int QUESTS_PER_TURN = 5;
 
 	std::vector<Quest*> availableQuests;
-
-	std::vector<Quest*> doneQuests;
 	
 	Shop* shop = nullptr;
 

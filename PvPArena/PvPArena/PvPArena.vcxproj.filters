@@ -227,5 +227,8 @@
     <ClInclude Include="HeaderFiles\Core\Monster.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="HeaderFiles\Helpers\MemoryHandler.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

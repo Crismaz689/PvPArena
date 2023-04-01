@@ -247,23 +247,19 @@ void ConsoleUI::showAvailableItems(Player* player, std::vector<Item> items) {
 	int numberOfClassItems = 0;
 
 	std::cout << "===== AVAILABLE ITEMS FOR YOUR CLASS =====\n";
+	std::cout << "0. Back to shop menu\n\n";
 
 	if (items.size() == 0) {
-		std::cout << "There are no items in the shop.." << "\n\n";
+		std::cout << "There are no items for your class in the shop.." << "\n\n";
 
 		return;
 	}
 
-	std::cout << "0. Back to shop menu\n\n";
 	for (int i = 0; i < items.size(); ++i) {
 		if (items[i].getClassName() == player->getClassName()) {
 			std::cout << (numberOfClassItems + 1) << ". " << items[i].getName() << "\n";
 			numberOfClassItems++;
 		}
-	}
-
-	if (numberOfClassItems == 0) {
-		std::cout << "There are no items for your class in the shop.." << "\n\n";
 	}
 }
 
