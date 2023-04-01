@@ -72,11 +72,11 @@ public:
 
 	int getShopMenuOption() override;
 
-	void showAvailableItems(Shop* shop) override;
+	void showAvailableItems(Player* player, std::vector<Item> items) override;
 
-	int getCurrentShopOption(Shop* shop) override;
+	int getCurrentShopOption(std::vector<Item> items) override;
 
-	void showItemDetails(Shop* shop, int itemIndex) override;
+	void showItemDetails(std::vector<Item> items, int itemIndex) override;
 
 	bool showBuyDecision() override;
 };

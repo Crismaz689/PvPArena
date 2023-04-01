@@ -243,29 +243,37 @@ int ConsoleUI::getShopMenuOption() {
 }
 
 
-void ConsoleUI::showAvailableItems(Shop* shop) {
-	std::vector<Item> items = shop->getItems();
+void ConsoleUI::showAvailableItems(Player* player, std::vector<Item> items) {
+	int numberOfClassItems = 0;
 
 	std::cout << "===== AVAILABLE ITEMS FOR YOUR CLASS =====\n";
 
 	if (items.size() == 0) {
 		std::cout << "There are no items in the shop.." << "\n\n";
+
+		return;
 	}
 
 	std::cout << "0. Back to shop menu\n\n";
 	for (int i = 0; i < items.size(); ++i) {
-		std::cout << (i + 1) << ". " << items[i].getName() << "\n";
+		if (items[i].getClassName() == player->getClassName()) {
+			std::cout << (numberOfClassItems + 1) << ". " << items[i].getName() << "\n";
+			numberOfClassItems++;
+		}
+	}
+
+	if (numberOfClassItems == 0) {
+		std::cout << "There are no items for your class in the shop.." << "\n\n";
 	}
 }
 
-int ConsoleUI::getCurrentShopOption(Shop* shop) {
+int ConsoleUI::getCurrentShopOption(std::vector<Item> items) {
 	std::string chosenItemIndex = "";
 	int chosenItemtIndexAsInt = 0;
 	bool isOptionValid = false;
-	std::vector<Item> items = shop->getItems();
 
 	while (!isOptionValid) {
-		std::cout << "[QUEST MENU]: Which quest do you want to take?: ";
+		std::cout << "[SHOP MENU]: Which item do you want to see in detail?: ";
 		std::cin >> chosenItemIndex;
 
 		try {
@@ -391,14 +399,56 @@ void ConsoleUI::showItemInfo(Item item) {
 		<< std::to_string(item.getCriticalChance()) << "\n";
 }
 
-void ConsoleUI::showItemDetails(Shop* shop, int itemIndex) {
+void ConsoleUI::showItemDetails(std::vector<Item> items, int itemIndex) {
+	Item item = items[itemIndex];
 
+	this->enter();
+	
+	std::cout << "[ITEM NAME]: " << item.getName() << "\n";
+	std::cout << "[HP]: " << item.getHp() << "\n";
+	std::cout << "[DEFENSE]: " << item.getDefense() << "\n";
+	std::cout << "[MAGIC DEFENSE]: " << item.getMagicDefense() << "\n";
+	std::cout << "[STRENGTH]: " << item.getStrength() << "\n";
+	std::cout << "[INTELLIGENCE]: " << item.getIntelligence() << "\n";
+	std::cout << "[DEXTERITY]: " << item.getDexterity() << "\n";
+	std::cout << "[CRITICAL CHANCE]: " << item.getCriticalChance() << "\n";
+	std::cout << "[PRICE]: " << item.getPrice() << "\n";
+
+	this->enter();
 }
 
 bool ConsoleUI::showBuyDecision() {
-	std::cout << "[ITEM MENU] Do you want to buy the item ? Y/N: ";
+	std::string answerAsString = "";
+	char answer = ' ';
+	bool isOptionValid = false;
 
-	// xd
+	while (!isOptionValid) {
+		std::cout << "[SHOP MENU] Do you want to buy the item ? Y/N: ";
+		std::cin >> answerAsString;
 
-	return false;
+		try {
+			if (answerAsString.size() > 1) {
+				std::cerr << "[ERROR]: Available options: Y/N y/n!\n\n";
+				continue;
+			}
+
+			answer = answerAsString[0];
+
+			if (answer  == 'Y' || answer == 'y' ||
+				answer == 'N' || answer == 'n') {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: Available options: Y/N y/n!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	this->wipe();
+
+	return std::tolower(answer) == 'y';
 }

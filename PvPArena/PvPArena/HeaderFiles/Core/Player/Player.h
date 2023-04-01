@@ -36,6 +36,14 @@ protected:
 
 	ClassName className;
 
+	void updatePlayerEquipment(Item itemToReplace, Item itemToAdd);
+
+	void updatePlayerEquipment(Item itemToAdd);
+
+	void addItem(Item item);
+
+	void removeItem(Item item);
+
 public:
 	static inline ItemType EQUIPMENT[Item::NUMBER_OF_ARMOR_PARTS] = {
 		ItemType::Helmet, ItemType::Chest, ItemType::Weapon, ItemType::Pants, ItemType::Boots };
@@ -81,4 +89,6 @@ public:
 	void substractHp(int hpToSubtract);
 
 	std::vector<Item> getItems();
+
+	void buyItem(Item item);
 };

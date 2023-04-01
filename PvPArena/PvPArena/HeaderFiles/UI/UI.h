@@ -73,11 +73,11 @@ public:
 
 	virtual int getShopMenuOption() = 0;
 
-	virtual void showAvailableItems(Shop* shop) = 0;
+	virtual void showAvailableItems(Player* player, std::vector<Item> items) = 0;
 
-	virtual int getCurrentShopOption(Shop* shop) = 0;
+	virtual int getCurrentShopOption(std::vector<Item> items) = 0;
 
-	virtual void showItemDetails(Shop* shop, int itemIndex) = 0;
+	virtual void showItemDetails(std::vector<Item> items, int itemIndex) = 0;
 
 	virtual bool showBuyDecision() = 0;
 };

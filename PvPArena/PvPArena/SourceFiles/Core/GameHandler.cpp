@@ -149,21 +149,26 @@ void GameHandler::chooseShopMenu(Player*& player) {
 	int chosenItemIndex = 0;
 
 	do {
-		this->ui->showAvailableItems(this->shop);
-		chosenItemIndex = this->ui->getCurrentShopOption(this->shop);
+		std::vector<Item> availableItems = this->shop->getAvailableItems(player);
+		this->ui->showAvailableItems(player, availableItems);
+		chosenItemIndex = this->ui->getCurrentShopOption(availableItems);
 
 		if (chosenItemIndex + 1 != 0) { // getCurrentSopOption() returns option - 1
-			this->ui->showItemDetails(this->shop, chosenItemIndex);
+			this->ui->showItemDetails(availableItems, chosenItemIndex);
 			bool doYouWantToBuyAnItem = this->ui->showBuyDecision();
 
 			if (doYouWantToBuyAnItem) {
-				// check gold amount
-				// add item to a user
-				// delete item from shop
-				// show transaction status
+				if (player->getGold() >= availableItems[chosenItemIndex].getPrice()) {
+					player->buyItem(availableItems[chosenItemIndex]);
+					this->shop->removeItem(availableItems[chosenItemIndex]);
+					this->ui->showInfoMessage("Item bought and added to your equipment!");
+				}
+				else {
+					this->ui->showErrorMessage("You do not have enough gold to buy this item.");
+				}
 
-				// void ConsoleUI::showItemDetails(Shop* shop, int itemIndex)
-				// bool ConsoleUI::showBuyDecision()
+				this->ui->waitForContinue();
+				this->ui->wipe();
 			}
 		}
 	} while (chosenItemIndex + 1 != 0);

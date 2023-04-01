@@ -74,3 +74,61 @@ int Player::getCriticalChance() {
 std::vector<Item> Player::getItems() {
 	return this->items;
 }
+
+void Player::buyItem(Item item) {
+	this->gold = this->gold - item.getPrice();
+
+	for (auto& itm : this->items) {
+		if (itm.getType() == item.getType()) {
+			this->updatePlayerEquipment(itm, item);
+
+			return;
+		}
+	}
+	
+	this->updatePlayerEquipment(item);
+}
+
+void Player::updatePlayerEquipment(Item itemToReplace, Item itemToAdd) {
+	this->removeItem(itemToReplace);
+	this->addItem(itemToAdd);
+}
+
+void Player::updatePlayerEquipment(Item itemToAdd) {
+	this->addItem(itemToAdd);
+}
+
+void Player::addItem(Item item) {
+	this->maxHP = this->maxHP + item.getHp();
+	this->hp = this->hp + item.getHp();
+	this->defense = this->defense + item.getDefense();
+	this->magicDefense = this->magicDefense + item.getMagicDefense();
+	this->strength = this->strength + item.getStrength();
+	this->intelligence = this->intelligence + item.getIntelligence();
+	this->dexterity = this->dexterity + item.getDexterity();
+	this->criticalChance = this->criticalChance + item.getCriticalChance();
+
+	this->items.push_back(item);
+}
+
+void Player::removeItem(Item item) {
+	this->maxHP = this->maxHP - item.getHp();
+	this->hp = this->hp - item.getHp();
+	this->defense = this->defense - item.getDefense();
+	this->magicDefense = this->magicDefense - item.getMagicDefense();
+	this->strength = this->strength - item.getStrength();
+	this->intelligence = this->intelligence - item.getIntelligence();
+	this->dexterity = this->dexterity - item.getDexterity();
+	this->criticalChance = this->criticalChance - item.getCriticalChance();
+
+	for (int i = 0; i < this->items.size(); ++i) {
+		if (this->items[i].getName() == item.getName()) {
+			auto it = this->items.begin();
+
+			std::advance(it, i);
+			this->items.erase(it);
+			
+			return;
+		}
+	}
+}
