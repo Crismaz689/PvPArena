@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// representation of item file positions
+/// </summary>
 enum class ItemFilePosition {
 	ItemName = 0,
 	ClassName = 1,

@@ -2,6 +2,9 @@
 
 #include "Player.h";
 
+/// <summary>
+/// representation of a berserker class
+/// </summary>
 class Berserker : public Player {
 private:
 	const int INITIAL_DAMAGE = 3;
@@ -9,6 +12,11 @@ private:
 	const int DAMAGE_VALUE_DIVIDER_FOR_HP = 100;
 
 public:
+	/// <summary>
+	/// constructor
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="className"></param>
 	Berserker(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 120;
 		this->maxHP = this->hp;
@@ -20,9 +28,20 @@ public:
 		this->criticalChance = 5;
 	}
 
+	/// <summary>
+	/// destructor
+	/// </summary>
 	~Berserker() {}
 
+	/// <summary>
+	/// gets calculated damage
+	/// </summary>
+	/// <returns>calculated damage</returns>
 	int calculateDamage() override;
 
+	/// <summary>
+	/// gets calculated block
+	/// </summary>
+	/// <returns>is attack blocked</returns>
 	bool calculateBlockChance();
 };

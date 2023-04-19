@@ -31,7 +31,33 @@ bool Arena::fightAgainstMonster(Player*& player, Monster& monster, UI* ui) {
 }
 
 bool Arena::fightPlayerAgainstPlayer(Player*& playerA, Player*& playerB, UI* ui) {
-	return true;
+    ui->showFightStart();
+
+    while (true) {
+        ui->showInfoMessage("Now " + playerA->getName() + " attacks " + playerB->getName() + "...");
+        Arena::attackPlayerByPlayer(playerA, playerB, ui);
+        if (playerB->getHp() <= 0) {
+            ui->showArenaResult(playerA, true);
+            ui->showInfoMessage("After fight " + playerA->getName() + "'s hp = " + std::to_string(playerA->getHp()));
+            ui->enter();
+
+            return true;
+        }
+        ui->waitForContinue();
+        ui->enter();
+
+        ui->showInfoMessage("Now " + playerB->getName() + " attacks " + playerB->getName() + "...");
+        Arena::attackPlayerByPlayer(playerB, playerA, ui);
+        if (playerA->getHp() <= 0) {
+            ui->showArenaResult(playerB, false);
+            ui->showInfoMessage("After fight " + playerB->getName() + "'s hp = " + std::to_string(playerB->getHp()));
+            ui->enter();
+
+            return false;
+        }
+        ui->waitForContinue();
+        ui->enter();
+    }
 }
 
 void Arena::attackPlayerByMonster(Monster& monster, Player*& player, UI* ui) {
@@ -163,4 +189,155 @@ void Arena::attackMonsterByPlayer(Player*& player, Monster& monster, UI* ui) {
 }
 
 void Arena::attackPlayerByPlayer(Player*& playerA, Player*& playerB, UI* ui) {
+    if (Arena::isAttackBlockedByPlayer(playerA, playerB, ui))
+        return;
+
+    bool isAttackRepeated = false;
+    bool isCriticalHit = playerA->isHitCritical();
+    ClassName playerClassName = playerA->getClassName();
+
+    int playerAttackDamageValue = isCriticalHit ?
+        playerA->calculateDamage() * 2 :
+        playerA->calculateDamage();
+
+    playerB->substractHp(playerAttackDamageValue);
+
+    ui->showInfoMessage(playerA->getName() + " attacks " + playerB->getName() + " and deals " + std::to_string(playerAttackDamageValue) + " damage!");
+
+    if (isCriticalHit) {
+        ui->showInfoMessage("That was a critical hit!");
+    }
+
+    if (playerB->getHp() <= 0) {
+        ui->showInfoMessage(playerB->getName() + " has died!");
+    }
+    else {
+        ui->showInfoMessage(playerB->getName() + " has " + std::to_string(playerB->getHp()) + " HP");
+    }
+
+    if (playerClassName == ClassName::Archer || playerClassName == ClassName::Sniper) {
+        if (playerClassName == ClassName::Archer && playerB->getHp() <= 0) {
+            auto playerAsArcher = dynamic_cast<Archer*>(playerA);
+
+            isCriticalHit = playerAsArcher->isHitCritical();
+            playerAttackDamageValue = isCriticalHit ?
+                playerAsArcher->calculateDamage() * 2 :
+                playerAsArcher->calculateDamage();
+        }
+        else if (playerClassName == ClassName::Sniper && playerB->getHp() <= 0) {
+            auto playerAsSniper = dynamic_cast<Sniper*>(playerA);
+
+            isCriticalHit = playerAsSniper->isHitCritical();
+            playerAttackDamageValue = isCriticalHit ?
+                playerAsSniper->calculateDamage() * 2 :
+                playerAsSniper->calculateDamage();
+        }
+
+        playerB->substractHp(playerAttackDamageValue);
+
+        ui->showInfoMessage(playerA->getName() + " attacks second time " + playerB->getName() + " and deals " + std::to_string(playerAttackDamageValue) + " damage!");
+
+        if (isCriticalHit) {
+            ui->showInfoMessage("That was a critical hit!");
+        }
+
+        if (playerB->getHp() <= 0) {
+            ui->showInfoMessage(playerB->getName() + " has died!");
+        }
+        else {
+            ui->showInfoMessage(playerB->getName() + " has " + std::to_string(playerB->getHp()) + " HP");
+        }
+    }
+}
+
+bool Arena::isAttackBlockedByPlayer(Player* playerA, Player* playerB, UI* ui) {
+    bool isHitBlocked = false;
+
+    switch (playerB->getClassName()) {
+        case ClassName::Warrior: {
+            if (playerA->getClassName() == ClassName::Mage)
+                break;
+
+            auto playerAsWarrior = dynamic_cast<Warrior*>(playerB);
+            isHitBlocked = playerAsWarrior->calculateBlockChance();
+
+            if (isHitBlocked) {
+                ui->showInfoMessage(playerB->getName() + " has blocked your attack!");
+                return true;
+            }
+
+            break;
+        }
+        case ClassName::Berserker: {
+            if (playerA->getClassName() == ClassName::Mage)
+                break;
+
+            auto playerAsBerserker = dynamic_cast<Berserker*>(playerB);
+            isHitBlocked = playerAsBerserker->calculateBlockChance();
+
+            if (isHitBlocked) {
+                ui->showInfoMessage(playerB->getName() + " has blocked your attack!");
+                return true;
+            }
+
+            break;
+        }
+        case ClassName::Paladin: {
+            if (playerA->getClassName() == ClassName::Mage)
+                break;
+
+            auto playerAsPaladin = dynamic_cast<Paladin*>(playerB);
+            isHitBlocked = playerAsPaladin->calculateBlockChance();
+
+            if (isHitBlocked) {
+                ui->showInfoMessage(playerB->getName() + " has blocked your attack!");
+                return true;
+            }
+
+            break;
+        }
+        case ClassName::Archer: {
+            if (playerA->getClassName() == ClassName::Mage)
+                break;
+
+            auto playerAsArcher = dynamic_cast<Archer*>(playerB);
+            isHitBlocked = playerAsArcher->calculateDodgeChance();
+
+            if (isHitBlocked) {
+                ui->showInfoMessage(playerB->getName() + " has dodged your attack!");
+                return true;
+            }
+
+            break;
+        }
+        case ClassName::Sniper: {
+            if (playerA->getClassName() == ClassName::Mage)
+                break;
+
+            auto playerAsSniper = dynamic_cast<Sniper*>(playerB);
+            isHitBlocked = playerAsSniper->calculateDodgeChance();
+
+            if (isHitBlocked) {
+                ui->showInfoMessage(playerB->getName() + " has dodged your attack!");
+                return true;
+            }
+
+            break;
+        }
+        case ClassName::Mage: {
+            if (playerA->getClassName() == ClassName::Mage) {
+                auto playerAsMage = dynamic_cast<Mage*>(playerB);
+                isHitBlocked = playerAsMage->getMagicDefense();
+
+                if (isHitBlocked) {
+                    ui->showInfoMessage(playerB->getName() + " has blocked your your attack using magic defense!");
+                    return true;
+                }
+            }
+
+            break;
+        }
+    }
+
+    return false;
 }

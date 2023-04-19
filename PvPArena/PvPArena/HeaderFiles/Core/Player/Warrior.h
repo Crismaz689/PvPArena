@@ -2,11 +2,19 @@
 
 #include "Player.h";
 
+/// <summary>
+/// representation of a warrior class
+/// </summary>
 class Warrior : public Player {
 private:
 	const int INITIAL_DAMAGE = 5;
 
 public:
+	/// <summary>
+	/// constructor
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="className"></param>
 	Warrior(std::string name, ClassName className) : Player(name, className) {
 		this->hp = 150;
 		this->maxHP = this->hp;
@@ -18,9 +26,20 @@ public:
 		this->criticalChance = 5;
 	}
 
+	/// <summary>
+	/// destructor
+	/// </summary>
 	~Warrior() {}
 
+	/// <summary>
+	/// gets calculated damage
+	/// </summary>
+	/// <returns>calculated damage</returns>
 	int calculateDamage() override;
 
+	/// <summary>
+	/// gets calculated block
+	/// </summary>
+	/// <returns>is attack blocked</returns>
 	bool calculateBlockChance();
 };

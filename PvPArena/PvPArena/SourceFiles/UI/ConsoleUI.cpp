@@ -350,6 +350,13 @@ void ConsoleUI::showFightStart() {
 	std::cout << "=======================================\n\n";
 }
 
+void ConsoleUI::showWinner(Player* player) {
+	this->wipe();
+	std::cout << "\n\n=======================================\n";
+	std::cout << "============== The winner is " << player->getName() << " ==============\n";
+	std::cout << "=======================================\n\n";
+}
+
 void ConsoleUI::showPlayerDetails(Player* player) {
 	this->showInfoMessage("You are playing as " + EnumUtil::convertIntToStringClassName((int)player->getClassName()) + "!");
 	this->enter();
@@ -431,6 +438,46 @@ bool ConsoleUI::showBuyDecision() {
 			answer = answerAsString[0];
 
 			if (answer  == 'Y' || answer == 'y' ||
+				answer == 'N' || answer == 'n') {
+				isOptionValid = true;
+			}
+			else {
+				std::cerr << "[ERROR]: Available options: Y/N y/n!\n\n";
+			}
+		}
+		catch (std::invalid_argument& exception) {
+			this->showExceptionMessage(exception.what());
+			std::cout << "\n\n";
+		}
+	}
+
+	this->wipe();
+
+	return std::tolower(answer) == 'y';
+}
+
+bool ConsoleUI::showDuelDecision(bool isAlreadyChallenged) {
+	std::string answerAsString = "";
+	char answer = ' ';
+	bool isOptionValid = false;
+
+	while (!isOptionValid) {
+		if (isAlreadyChallenged) 
+			std::cout << "[DUEL MENU] Do you accept the duel? Y/N: ";
+		else
+			std::cout << "[DUEL MENU] Do you want to challenge an enemy? Y/N: ";
+
+		std::cin >> answerAsString;
+
+		try {
+			if (answerAsString.size() > 1) {
+				std::cerr << "[ERROR]: Available options: Y/N y/n!\n\n";
+				continue;
+			}
+
+			answer = answerAsString[0];
+
+			if (answer == 'Y' || answer == 'y' ||
 				answer == 'N' || answer == 'n') {
 				isOptionValid = true;
 			}

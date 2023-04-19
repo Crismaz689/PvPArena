@@ -6,6 +6,9 @@
 #include "../Core/Enums/ConsoleArgumentType.h";
 #include "../UI/ConsoleUI.h"
 
+/// <summary>
+/// responsible for validating console arguments
+/// </summary>
 class ConsoleArgumentsValidator {
 private:
 	static inline const int FIRST_FILE_ARGUMENT_POSITION = 2;
@@ -37,9 +40,22 @@ private:
 	bool checkDoesFileExist(char* const fileName);
 
 public:
+	/// <summary>
+	/// default constructor
+	/// </summary>
 	ConsoleArgumentsValidator() {}
 
+	/// <summary>
+	/// destructor
+	/// </summary>
 	~ConsoleArgumentsValidator() {}
 
+	/// <summary>
+	/// checks given console arguments in terms of being valid
+	/// </summary>
+	/// <param name="argc">number of arguments</param>
+	/// <param name="argv">array of arguments</param>
+	/// <param name="ui">user interface</param>
+	/// <returns>validation state</returns>
 	ConsoleArgumentType checkArguments(int argc, char* const argv[], UI* ui);
 };

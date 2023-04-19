@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// representation of available quest battle file positions
+/// </summary>
 enum class QuestBattleFilePosition {
 	Type = 0,
 	Description = 1,

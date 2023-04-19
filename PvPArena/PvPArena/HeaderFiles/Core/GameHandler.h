@@ -18,6 +18,9 @@
 #include "./Quests/Quest.h";
 #include "./Shop.h";
 
+/// <summary>
+/// responsible for main game handling
+/// </summary>
 class GameHandler {
 private:
 	const unsigned int QUESTS_PER_TURN = 5;
@@ -34,6 +37,10 @@ private:
 
 	TurnHandler* turnHandler = nullptr;
 
+	bool isPlayerChallanged = false;
+
+	int challangeTurnCounter = 0;
+
 	void initializeItems(int argc, char* const argv[]);
 
 	void initializeQuests(int argc, char* const argv[]);
@@ -43,8 +50,6 @@ private:
 	Player* createPlayer(int playerNumber);
 
 	std::vector<Quest*> randomizeQuests();
-
-	void clearCurrentQuests(std::vector<Quest*>& quests);
 
 	void handleTurn(Player* player, std::vector<Quest*> currentQuests);
 
@@ -64,12 +69,26 @@ private:
 
 	void chooseShopMenu(Player*& player);
 
+	bool handleChallengeMenu(Player* currentPlayer);
+
 public:
+	/// <summary>
+	/// default constructor
+	/// </summary>
 	GameHandler() {}
 
+	/// <summary>
+	/// destructor
+	/// </summary>
 	~GameHandler();
 
+	/// <summary>
+	/// starts the game
+	/// </summary>
 	void startGame();
 
+	/// <summary>
+	/// initialize structures with given arguments
+	/// </summary>
 	void initialize(int argc, char* const argv[], UI* ui);
 };

@@ -240,6 +240,20 @@ void GameHandler::removeStamina(Player*& player, int staminaToLose) {
 	player->setStamina(substractedStamina);
 }
 
+bool GameHandler::handleChallengeMenu(Player* currentPlayer) {
+	bool challengeDecision = this->ui->showDuelDecision(this->isPlayerChallanged);
+
+	if (this->isPlayerChallanged && challengeDecision && this->challangeTurnCounter == 1) {
+		bool isPlayerAWinner = Arena::fightPlayerAgainstPlayer(this->playerA, this->playerB, this->ui);
+	}
+	else if (!this->isPlayerChallanged && challengeDecision) {
+		this->isPlayerChallanged = true;
+		this->challangeTurnCounter = 1;
+	}
+
+	return challengeDecision;
+}
+
 void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) {
 	int currentTurn = this->turnHandler->getTurn() + 1;
 	int currentDay = ((currentTurn - 1) / 2) + 1;
@@ -247,13 +261,27 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 
 	do {
 		this->ui->showTurnInfo(player, currentTurn, currentDay);
-		this->ui->showTurnMenu(false);
+		this->ui->showTurnMenu(this->isPlayerChallanged);
 		chosenOption = this->ui->getTurnMenuOption();
 		this->ui->wipe();
 		bool isPlayerDead = false;
 
 		switch (chosenOption) {
 			case 1:
+				if (this->handleChallengeMenu(player)) {
+					if (this->playerA->getHp() <= 0)
+						this->ui->showWinner(this->playerB);
+					else if (this->playerB->getHp() <= 0)
+						this->ui->showWinner(this->playerA);
+					else
+						this->ui->showInfoMessage("You finished your turn!");
+
+					this->turnHandler->endTurn();
+					this->ui->waitForContinue();
+					this->ui->wipe();
+
+					chosenOption = 6;
+				}
 				break;
 			case 2:
 				this->handleQuestMenu(player, currentQuests, isPlayerDead);
@@ -274,20 +302,17 @@ void GameHandler::handleTurn(Player* player, std::vector<Quest*> currentQuests) 
 				this->turnHandler->endTurn();
 				this->ui->waitForContinue();
 				this->ui->wipe();
+
+				if (this->challangeTurnCounter == 1) {
+					this->challangeTurnCounter = 0;
+					this->isPlayerChallanged = false;
+				}
 				break;
 			default:
 				this->ui->showErrorMessage("You have to choose option between 1 and 6");
 				break;
 		}
-	} while (chosenOption != 6 );
-}
-
-void GameHandler::clearCurrentQuests(std::vector<Quest*>& quests) {
-	for (auto quest : quests) {
-		delete quest;
-	}
-
-	quests.clear();
+	} while (chosenOption != 6);
 }
 
 void GameHandler::startGame() {
@@ -308,4 +333,10 @@ void GameHandler::startGame() {
 		if (currentPlayer->getHp() <= 0) return;
 		currentTurn = this->turnHandler->getTurn();
 	}
+
+	Arena::fightPlayerAgainstPlayer(this->playerA, this->playerB, this->ui);
+	if (this->playerA->getHp() <= 0)
+		this->ui->showWinner(this->playerB);
+	else if (this->playerB->getHp() <= 0)
+		this->ui->showWinner(this->playerA);
 }

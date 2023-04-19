@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// representation of available class names
+/// </summary>
 enum class ClassName {
 	Warrior = 0,
 	Mage = 1,

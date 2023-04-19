@@ -9,7 +9,7 @@ int main(int argc, char* const argv[]) {
     UI* consoleUI = new ConsoleUI();
     ConsoleArgumentType validationStatus = consoleValidator->checkArguments(argc, argv, consoleUI);
 
-    if (validationStatus  == ConsoleArgumentType::Files) {
+    if (validationStatus == ConsoleArgumentType::Files) {
         GameHandler* gameHandler = new GameHandler();
 
         gameHandler->initialize(argc, argv, consoleUI);
